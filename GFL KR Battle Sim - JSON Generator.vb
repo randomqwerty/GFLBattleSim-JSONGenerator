@@ -209,7 +209,7 @@ Sub SimJSON()
 
     ' Declare variables
     Const ForReading = 1    '
-    Dim fileToRead As String: fileToRead = Range("MissionJSON").Value   ' the path of the file to read
+    Dim fileToRead As String: fileToRead = Range("SimJSON").Value   ' the path of the file to read
     Dim fileToWrite As String: fileToWrite = fileToRead                 ' the path of a new file (set to be the same as the read file)
     Dim FSO As Object
     Dim readFile As Object      'the file you will READ
