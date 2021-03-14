@@ -6,8 +6,10 @@ Option Explicit
 
 Sub KRSimJSON()
     Call CreateDollJSON
-    Call CreateJSON("Fairy", Range("FairyJSONPath").Value)  ' similar structure as Equip JSON so uses same code with diff parameter
-    Call CreateJSON("Equip", Range("EquipJSONPath").Value)  ' similar structure as Fairy JSON so uses same code with diff parameter
+    Call CreateJSON("Fairy", Range("FairyJSONPath").Value)
+    Call CreateJSON("Equip", Range("EquipJSONPath").Value)
+    Call CreateJSON("HOC", Range("HOCJSONPath").Value)
+    Call ChipJSON ' blank file
     Call MissionJSON
     Call SimJSON
     MsgBox "Process completed."
@@ -152,6 +154,23 @@ Public Sub CreateJSON(sheetName As String, fullFilePath As String)
     Next j
     
     fileStream.WriteText "}"
+    fileStream.SaveToFile fullFilePath, 2 'Save binary data To disk
+End Sub
+
+Sub ChipJSON()
+    Dim FSO As Object
+    Set FSO = CreateObject("Scripting.FileSystemObject")
+    Dim fullFilePath As String: fullFilePath = Range("ChipJSONPath").Value
+
+    Dim fileStream As Object
+    Set fileStream = CreateObject("ADODB.Stream")
+    fileStream.Type = 2 'Specify stream type - we want To save text/string data.
+    fileStream.Charset = "utf-8" 'Specify charset For the source text data.
+    fileStream.Open 'Open the stream And write binary data To the object
+
+    fileStream.WriteText "{" & vbNewLine
+    fileStream.WriteText "}"
+
     fileStream.SaveToFile fullFilePath, 2 'Save binary data To disk
 End Sub
 
