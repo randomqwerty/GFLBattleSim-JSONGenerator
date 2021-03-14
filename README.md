@@ -5,18 +5,21 @@ This is a macro-enabled Excel spreadsheet that will generate/modify the followin
 * gun_with_user_info.json
 * fairy_with_user_info.json
 * equip_with_user_info.json
-* GFBattleSimulator.json (modified, file must already exist)
-* mission_act_info.json (modified, file must already exist)
+* squad_with_user_info.json
+* chip_with_user_info.json (this will be a blank file)
+* GFBattleSimulator.json (this is modified, the file must already exist)
+* mission_act_info.json (this is modified, the file must already exist)
 
 Specifically, this can be used to:
 
 * Change battle settings (day/night, enemy ID, boss HP, enable/disable HOC/Fairy)
 * Edit echelon composition (dolls, skill levels, equipment, positions, etc.)
 * Edit fairy information (fairy, rarity, level, skill level, etc.)
+* Edit HOC information (stats, skill level, whether to use said HOC, etc.)
 * Apply strategy fairy skills (Parachute, Construction, Suee, Combo)
 * Apply enemy debuffs (currently only EMP)
 
-This does NOT adjust the HOC JSON file (squad_with_user_info.json).
+Note that you should enter the FINAL stats if simming HOCs (i.e., including chips and iterations). The base stats will be adjusted to get the desired stats, the chip boards will be blank and they will appear as max iteration in-game.
 
 Battle Sim can be downloaded from here: https://gall.dcinside.com/mgallery/board/view?id=micateam&no=1506585
 
