@@ -34,7 +34,7 @@ Public Sub CreateDollJSON()
     Set wks = wkb.Sheets(sheetName)
 
     Dim lcolumn As Long: lcolumn = wks.Cells(1, Columns.Count).End(xlToLeft).Column
-    Dim lrow As Long: lrow = wks.Cells(Rows.Count, "A").End(xlUp).row
+    Dim lrow As Long: lrow = wks.Cells(Rows.Count, "A").End(xlUp).Row
         
     Dim titles() As String
     ReDim titles(lcolumn)
@@ -104,7 +104,7 @@ Public Sub CreateJSON(sheetName As String, fullFilePath As String)
     Dim wks As Worksheet: Set wks = wkb.Sheets(sheetName)
 
     Dim lcolumn As Long: lcolumn = wks.Cells(1, Columns.Count).End(xlToLeft).Column
-    Dim lrow As Long: lrow = wks.Cells(Rows.Count, "A").End(xlUp).row
+    Dim lrow As Long: lrow = wks.Cells(Rows.Count, "A").End(xlUp).Row
     
     Dim titles() As String
     ReDim titles(lcolumn)
@@ -204,7 +204,7 @@ Sub MissionJSON()
     
     ' Set worksheet name and number of rows to loop through
     Set wks = ThisWorkbook.Sheets("Mission_Act_Info")
-    lrow = wks.Cells(Rows.Count, "A").End(xlUp).row - 1
+    lrow = wks.Cells(Rows.Count, "A").End(xlUp).Row - 1
     
     ' Replace lines in the array
     Dim i As Integer, ln As Integer
@@ -253,7 +253,7 @@ Sub SimJSON()
     
     ' Set worksheet name and number of rows to loop through
     Set wks = ThisWorkbook.Sheets("GFBattleSimulator")
-    lrow = wks.Cells(Rows.Count, "A").End(xlUp).row - 1
+    lrow = wks.Cells(Rows.Count, "A").End(xlUp).Row - 1
     
     ' Replace lines in the array
     Dim i As Integer, ln As Integer
@@ -270,4 +270,97 @@ Sub SimJSON()
     Set readFile = Nothing
     Set writeFile = Nothing
     Set FSO = Nothing
+End Sub
+
+Sub SaveTeam()
+    Application.ScreenUpdating = False
+    
+    ' Get name for new preset
+    NewPresetName = InputBox("Enter a name for the new preset echelon:")
+    
+    ' Exit if no input or cancelled
+    If NewPresetName = vbCancel Or NewPresetName = "" Then
+        Application.ScreenUpdating = True
+        Exit Sub
+    End If
+    
+    With ThisWorkbook
+        Set result = .Sheets("Preset Teams").Range("C:C").Find(NewPresetName)
+        
+        ' If echelon name doesn't exist, add it
+        If result Is Nothing Then
+            pasteRow = .Sheets("Preset Teams").Range("D1048576").End(xlUp).Row + 1
+            
+            .Sheets("Main").Range("EchelonInput").Copy
+            .Sheets("Preset Teams").Range("D" & pasteRow).PasteSpecial xlAll
+            .Sheets("Preset Teams").Range("C" & pasteRow).Value = NewPresetName
+            Application.CutCopyMode = False
+            
+            ' Adjust list used for dropdown
+            pasteRow = .Sheets("Preset Teams").Range("A1048576").End(xlUp).Row + 1
+            .Sheets("Preset Teams").Range("A" & pasteRow).Value = NewPresetName
+            .Sheets("Preset Teams").Sort.SetRange Range("ListOfPresets")
+            .Sheets("Preset Teams").Sort.Apply
+            
+            ' Set dropdown box value
+            .Sheets("Main").Range("Preset").Value = NewPresetName
+            
+        ' Else overwrite the existing data
+        Else
+            rowNum = result.Row
+            .Sheets("Main").Range("EchelonInput").Copy
+            Sheets("Preset Teams").Range("D" & rowNum & ":Y" & rowNum + 4).PasteSpecial xlAll
+            Application.CutCopyMode = False
+        End If
+    End With
+    
+    Application.ScreenUpdating = True
+End Sub
+
+Sub LoadTeam()
+    Application.ScreenUpdating = False
+    With ThisWorkbook
+        presetName = .Sheets("Main").Range("Preset").Value
+        Set result = .Sheets("Preset Teams").Range("C:C").Find(presetName)
+        
+        If result Is Nothing Then
+            Application.ScreenUpdating = True
+            Exit Sub
+        Else
+            rowNum = result.Row
+            copyRange = .Sheets("Preset Teams").Range("D" & rowNum & ":Y" & rowNum + 4)
+            .Sheets("Main").Range("EchelonInput").Value = copyRange
+        End If
+    End With
+    Application.ScreenUpdating = True
+End Sub
+
+Sub DeleteTeam()
+    Application.ScreenUpdating = False
+    ' Ask user to confirm before deletion
+    prompt = MsgBox("Pressing 'OK' will delete the preset echelon from the 'Teams' tab. Are you sure you want to continue?", vbYesNo)
+    If prompt = vbNo Then Exit Sub
+
+    With ThisWorkbook
+        presetName = .Sheets("Main").Range("Preset").Value
+        
+        ' Delete echelon input
+        Set result = .Sheets("Preset Teams").Range("C:C").Find(presetName)
+        
+        If result Is Nothing Then
+            Application.ScreenUpdating = True
+            Exit Sub
+        Else
+            rowNum = result.Row
+            .Sheets("Preset Teams").Range("C" & rowNum & ":Y" & rowNum + 4).Delete (xlShiftUp)
+            
+            ' Delete from dropdown list
+            rowNum = .Sheets("Preset Teams").Range("A:A").Find(presetName).Row
+            .Sheets("Preset Teams").Range("A" & rowNum).Delete (xlShiftUp)
+            
+            ' Clear dropdown box
+            .Sheets("Main").Range("Preset").Value = ""
+        End If
+    End With
+    Application.ScreenUpdating = False
 End Sub
