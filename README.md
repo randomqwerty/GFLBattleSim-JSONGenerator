@@ -1,5 +1,5 @@
 # GFLBattleSim-JSONGenerator
-![screenshot](https://i.imgur.com/qIBZMB6.png)
+<img src="https://i.imgur.com/qIBZMB6.png" width="100%">
 
 This is a macro-enabled Excel spreadsheet that will generate/modify the following JSON files needed for the GFL KR Battle Sim.
 
