@@ -5,92 +5,29 @@
 Option Explicit
 
 Sub KRSimJSON()
-    Call CreateDollJSON
-    Call CreateJSON("Fairy", Range("FairyJSONPath").Value)
-    Call CreateJSON("Equip", Range("EquipJSONPath").Value)
-    Call CreateJSON("HOC", Range("HOCJSONPath").Value)
+    
+    Call CreateJSON_A("Fairy", Range("FairyJSONPath").Value)
+    Call CreateJSON_A("Equip", Range("EquipJSONPath").Value)
+    Call CreateJSON_A("HOC", Range("HOCJSONPath").Value)
+    
+    Call CreateJSON_B("Doll", Range("DollJSONPath").Value)
+    Call CreateJSON_B("SF", Range("SFJSONPath").Value)
+    Call CreateJSON_B("SF Chip", Range("SFChipJSONPath").Value)
+    
+    Call CreateJSON_C("Mission_Act_Info", Range("MissionJSON").Value, 2)
+    Call CreateJSON_C("GFBattleSimulator", Range("SimJSON").Value, 4)
+    
+    Call CreateSFTeamJSON("SF Team", Range("SFTeamJSONPath").Value) ' ugly mess
     Call ChipJSON ' blank file
-    Call MissionJSON
-    Call SimJSON
     MsgBox "Process completed."
 End Sub
 
-Public Sub CreateDollJSON()
-    Dim FSO As Object
-    Set FSO = CreateObject("Scripting.FileSystemObject")
-    Dim fullFilePath As String: fullFilePath = Range("DollJSONPath").Value
-    Dim sheetName As String: sheetName = "Doll"
 
-    Dim fileStream As Object
-    Set fileStream = CreateObject("ADODB.Stream")
-    fileStream.Type = 2 'Specify stream type - we want To save text/string data.
-    fileStream.Charset = "utf-8" 'Specify charset For the source text data.
-    fileStream.Open 'Open the stream And write binary data To the object
+Public Sub CreateJSON_A(sheetName As String, fullFilePath As String)
+' JSONs that start like:
+'     [
+'        "1": {
 
-    Dim wkb As Workbook
-    Set wkb = ThisWorkbook
-
-    Dim wks As Worksheet
-    Set wks = wkb.Sheets(sheetName)
-
-    Dim lcolumn As Long: lcolumn = wks.Cells(1, Columns.Count).End(xlToLeft).Column
-    Dim lrow As Long: lrow = wks.Cells(Rows.Count, "A").End(xlUp).Row
-        
-    Dim titles() As String
-    ReDim titles(lcolumn)
-    
-    Dim dq As String: dq = """"
-    Dim escapedDq As String: escapedDq = "\"""
-    Dim twospace As String: twospace = "  "
-    Dim fourspace As String: fourspace = "    "
-    
-    ' Define array of column titles
-    Dim i As Integer
-    For i = 1 To lcolumn
-        titles(i) = wks.Cells(1, i)
-    Next i
-    
-    ' First line of JSON
-    fileStream.WriteText "[" & vbNewLine
-    
-    Dim j As Integer
-    Dim cellvalue As String
-    
-    ' Loop through rows and columns
-    For j = 2 To lrow
-        ' Only executes if the row has a non-blank ID
-        If wks.Cells(j, 1).Value <> "" Then
-            
-            For i = 1 To lcolumn
-                If i = 1 Then
-                    fileStream.WriteText twospace & "{" & vbNewLine
-                End If
-                
-                cellvalue = Replace(wks.Cells(j, i), dq, escapedDq)
-                fileStream.WriteText fourspace & dq & titles(i) & dq & ": " & dq & cellvalue & dq
-                
-                If i <> lcolumn Then
-                    fileStream.WriteText ","
-                End If
-                
-                fileStream.WriteText vbNewLine
-            Next i
-            
-            fileStream.WriteText twospace & "}"
-            
-            If j <> lrow Then
-                fileStream.WriteText ","
-            End If
-            
-            fileStream.WriteText vbNewLine
-        End If
-    Next j
-    
-    fileStream.WriteText "]"
-    fileStream.SaveToFile fullFilePath, 2 'Save binary data To disk
-End Sub
-
-Public Sub CreateJSON(sheetName As String, fullFilePath As String)
     Dim FSO As Object
     Set FSO = CreateObject("Scripting.FileSystemObject")
 
@@ -157,6 +94,226 @@ Public Sub CreateJSON(sheetName As String, fullFilePath As String)
     fileStream.SaveToFile fullFilePath, 2 'Save binary data To disk
 End Sub
 
+
+Public Sub CreateJSON_B(sheetName As String, fullFilePath As String)
+' JSONs that start like:
+'     [
+'        {
+'           "id":
+
+    Dim FSO As Object
+    Set FSO = CreateObject("Scripting.FileSystemObject")
+
+    Dim fileStream As Object
+    Set fileStream = CreateObject("ADODB.Stream")
+    fileStream.Type = 2 'Specify stream type - we want To save text/string data.
+    fileStream.Charset = "utf-8" 'Specify charset For the source text data.
+    fileStream.Open 'Open the stream And write binary data To the object
+
+    Dim wkb As Workbook
+    Set wkb = ThisWorkbook
+
+    Dim wks As Worksheet
+    Set wks = wkb.Sheets(sheetName)
+
+    Dim lcolumn As Long: lcolumn = wks.Cells(1, Columns.Count).End(xlToLeft).Column
+    Dim lrow As Long: lrow = wks.Cells(Rows.Count, "A").End(xlUp).Row
+        
+    Dim titles() As String
+    ReDim titles(lcolumn)
+    
+    Dim dq As String: dq = """"
+    Dim escapedDq As String: escapedDq = "\"""
+    Dim twospace As String: twospace = "  "
+    Dim fourspace As String: fourspace = "    "
+    
+    ' Define array of column titles
+    Dim i As Integer
+    For i = 1 To lcolumn
+        titles(i) = wks.Cells(1, i)
+    Next i
+    
+    ' First line of JSON
+    fileStream.WriteText "["
+    
+    Dim j As Integer
+    Dim cellvalue As String
+    
+    ' Loop through rows and columns
+    For j = 2 To lrow
+        ' Only executes if the row has a non-blank ID
+        If wks.Cells(j, 1).Value <> "" Then
+            
+            For i = 1 To lcolumn
+                If i = 1 Then
+                    fileStream.WriteText vbNewLine & twospace & "{" & vbNewLine
+                End If
+                
+                cellvalue = Replace(wks.Cells(j, i), dq, escapedDq)
+                fileStream.WriteText fourspace & dq & titles(i) & dq & ": " & dq & cellvalue & dq
+                
+                If i <> lcolumn Then
+                    fileStream.WriteText ","
+                End If
+                
+                fileStream.WriteText vbNewLine
+            Next i
+            
+            fileStream.WriteText twospace & "}"
+            
+            If j <> lrow Then
+                fileStream.WriteText ","
+            End If
+        End If
+    Next j
+    
+    fileStream.WriteText vbNewLine & "]"
+    fileStream.SaveToFile fullFilePath, 2 'Save binary data To disk
+End Sub
+
+Sub CreateJSON_C(sheetName As String, fileToRead As String, numSpaces As Integer)
+' Replaces lines in a given JSON, rather than generate a JSON from scratch
+
+    ' Declare variables
+    Const ForReading = 1    '
+    Dim fileToWrite As String: fileToWrite = fileToRead                 ' the path of a new file (set to be the same as the read file)
+    Dim FSO As Object
+    Dim readFile As Object      'the file you will READ
+    Dim writeFile As Object     'the file you will CREATE (set to be the same as the read file)
+    Dim repLine As Variant      'the array of lines you will WRITE
+    Dim lrow As Long
+    Dim l As Long
+    Dim wks As Worksheet
+    
+    ' Read entire file into an array & close it
+    Set FSO = CreateObject("Scripting.FileSystemObject")
+    Set readFile = FSO.OpenTextFile(fileToRead, ForReading, False)
+    repLine = Split(readFile.ReadAll, vbNewLine)
+    readFile.Close
+    
+    Set writeFile = FSO.CreateTextFile(fileToRead, True, False)
+    
+    Dim dq As String: dq = """"
+    Dim escapedDq As String: escapedDq = "\"""
+    Dim twospace As String: twospace = "  "
+    Dim fourspace As String: fourspace = "    "
+    Dim eightspace As String: eightspace = "        "
+    Dim spacesUsed As String
+    
+    If numSpaces = 2 Then
+        spacesUsed = twospace
+    ElseIf numSpaces = 4 Then
+        spacesUsed = fourspace
+    ElseIf numSpaces = 8 Then
+        spacesUsed = eightspace
+    End If
+    
+    ' Set worksheet name and number of rows to loop through
+    Set wks = ThisWorkbook.Sheets(sheetName)
+    lrow = wks.Cells(Rows.Count, "A").End(xlUp).Row - 1
+    
+    ' Replace lines in the array
+    Dim i As Integer, ln As Integer
+    For i = 1 To lrow
+        ln = wks.Range("A1").Offset(i, 1).Value - 1
+        repLine(ln) = spacesUsed & wks.Range("A1").Offset(i, 2).Value
+    Next
+    
+    ' Overwrite original JSON
+    writeFile.Write Join(repLine, vbNewLine)
+    writeFile.Close
+    
+    ' Clean up
+    Set readFile = Nothing
+    Set writeFile = Nothing
+    Set FSO = Nothing
+End Sub
+
+Public Sub CreateSFTeamJSON(sheetName As String, fullFilePath As String)
+' Formatted completely different the rest...
+
+    Dim FSO As Object
+    Set FSO = CreateObject("Scripting.FileSystemObject")
+
+    Dim fileStream As Object
+    Set fileStream = CreateObject("ADODB.Stream")
+    fileStream.Type = 2 'Specify stream type - we want To save text/string data.
+    fileStream.Charset = "utf-8" 'Specify charset For the source text data.
+    fileStream.Open 'Open the stream And write binary data To the object
+
+    Dim wkb As Workbook: Set wkb = ThisWorkbook
+    Dim wks As Worksheet: Set wks = wkb.Sheets(sheetName)
+
+    Dim lcolumn As Long: lcolumn = 7
+    Dim lrow As Long: lrow = 2
+    
+    Dim titles() As String
+    ReDim titles(lcolumn)
+    
+    Dim dq As String: dq = """"
+    Dim escapedDq As String: escapedDq = "\"""
+    Dim twospace As String: twospace = "  "
+    Dim fourspace As String: fourspace = "    "
+    Dim eightspace As String: eightspace = "        "
+    
+    ' Define array of column titles
+    Dim i As Integer
+    For i = 1 To lcolumn
+        titles(i) = wks.Cells(1, i)
+    Next i
+    
+    fileStream.WriteText "["
+    
+    ' Loop through rows and columns
+    Dim j As Integer
+    Dim cellvalue As String
+    For j = 2 To lrow
+        If wks.Cells(j, 1).Value <> "" Then
+            fileStream.WriteText vbNewLine & twospace & "{" & vbNewLine
+            For i = 1 To lcolumn
+                
+                cellvalue = Replace(wks.Cells(j, i), dq, escapedDq)
+                
+                If titles(i) <> "info" Then
+                    fileStream.WriteText fourspace & dq & titles(i) & dq & ": " & dq & cellvalue & dq
+                Else
+                    fileStream.WriteText fourspace & dq & titles(i) & dq & ": {"
+                End If
+                
+                If i <> lcolumn Then
+                    fileStream.WriteText ","
+                End If
+                
+                fileStream.WriteText vbNewLine
+                
+                If titles(i) = "info" Then
+                    Dim k As Integer
+                    For k = 1 To 9
+                        fileStream.WriteText fourspace & twospace & dq & k & dq & ": {" & vbNewLine
+                        fileStream.WriteText eightspace & dq & "sangvis_with_user_id" & dq & ": " & wks.Cells(k + 1, "J") & "," & vbNewLine
+                        fileStream.WriteText eightspace & dq & "position" & dq & ": " & wks.Cells(k + 1, "K") & vbNewLine
+                        fileStream.WriteText fourspace & twospace & "}"
+                        
+                        If k <> 9 Then fileStream.WriteText ","
+                        fileStream.WriteText vbNewLine
+                    Next k
+                    fileStream.WriteText fourspace & "}" & vbNewLine
+                End If
+            Next i
+            
+            fileStream.WriteText twospace & "}"
+            
+            If j <> lrow Then
+                fileStream.WriteText ","
+            End If
+            
+            fileStream.WriteText vbNewLine
+        End If
+    Next j
+    fileStream.WriteText "]"
+    fileStream.SaveToFile fullFilePath, 2 'Save binary data To disk
+End Sub
+
 Sub ChipJSON()
     Dim FSO As Object
     Set FSO = CreateObject("Scripting.FileSystemObject")
@@ -174,103 +331,6 @@ Sub ChipJSON()
     fileStream.SaveToFile fullFilePath, 2 'Save binary data To disk
 End Sub
 
-Sub MissionJSON()
-    ' To keep things simple, this simply replaces certain lines in the JSON instead of creating the JSON from scratch
-
-    ' Declare variables
-    Const ForReading = 1    '
-    Dim fileToRead As String: fileToRead = Range("MissionJSON").Value   ' the path of the file to read
-    Dim fileToWrite As String: fileToWrite = fileToRead                 ' the path of a new file (set to be the same as the read file)
-    Dim FSO As Object
-    Dim readFile As Object      'the file you will READ
-    Dim writeFile As Object     'the file you will CREATE (set to be the same as the read file)
-    Dim repLine As Variant      'the array of lines you will WRITE
-    Dim lrow As Long
-    Dim l As Long
-    Dim wks As Worksheet
-    
-    ' Read entire file into an array & close it
-    Set FSO = CreateObject("Scripting.FileSystemObject")
-    Set readFile = FSO.OpenTextFile(fileToRead, ForReading, False)
-    repLine = Split(readFile.ReadAll, vbNewLine)
-    readFile.Close
-    
-    Set writeFile = FSO.CreateTextFile(fileToRead, True, False)
-    
-    Dim dq As String: dq = """"
-    Dim escapedDq As String: escapedDq = "\"""
-    Dim twospace As String: twospace = "  "
-    Dim fourspace As String: fourspace = "    "
-    
-    ' Set worksheet name and number of rows to loop through
-    Set wks = ThisWorkbook.Sheets("Mission_Act_Info")
-    lrow = wks.Cells(Rows.Count, "A").End(xlUp).Row - 1
-    
-    ' Replace lines in the array
-    Dim i As Integer, ln As Integer
-    For i = 1 To lrow
-        ln = wks.Range("A1").Offset(i, 1).Value - 1
-        repLine(ln) = twospace & wks.Range("A1").Offset(i, 2).Value
-    Next
-    
-    ' Overwrite original JSON
-    writeFile.Write Join(repLine, vbNewLine)
-    writeFile.Close
-    
-    ' Clean up
-    Set readFile = Nothing
-    Set writeFile = Nothing
-    Set FSO = Nothing
-End Sub
-
-Sub SimJSON()
-    ' To keep things simple, this simply replaces certain lines in the JSON instead of creating the JSON from scratch
-
-    ' Declare variables
-    Const ForReading = 1    '
-    Dim fileToRead As String: fileToRead = Range("SimJSON").Value   ' the path of the file to read
-    Dim fileToWrite As String: fileToWrite = fileToRead                 ' the path of a new file (set to be the same as the read file)
-    Dim FSO As Object
-    Dim readFile As Object      'the file you will READ
-    Dim writeFile As Object     'the file you will CREATE (set to be the same as the read file)
-    Dim repLine As Variant      'the array of lines you will WRITE
-    Dim lrow As Long
-    Dim l As Long
-    Dim wks As Worksheet
-    
-    ' Read entire file into an array & close it
-    Set FSO = CreateObject("Scripting.FileSystemObject")
-    Set readFile = FSO.OpenTextFile(fileToRead, ForReading, False)
-    repLine = Split(readFile.ReadAll, vbNewLine)
-    readFile.Close
-    
-    Set writeFile = FSO.CreateTextFile(fileToRead, True, False)
-    
-    Dim dq As String: dq = """"
-    Dim escapedDq As String: escapedDq = "\"""
-    Dim twospace As String: twospace = "  "
-    Dim fourspace As String: fourspace = "    "
-    
-    ' Set worksheet name and number of rows to loop through
-    Set wks = ThisWorkbook.Sheets("GFBattleSimulator")
-    lrow = wks.Cells(Rows.Count, "A").End(xlUp).Row - 1
-    
-    ' Replace lines in the array
-    Dim i As Integer, ln As Integer
-    For i = 1 To lrow
-        ln = wks.Range("A1").Offset(i, 1).Value - 1
-        repLine(ln) = fourspace & wks.Range("A1").Offset(i, 2).Value
-    Next
-    
-    ' Overwrite original JSON
-    writeFile.Write Join(repLine, vbNewLine)
-    writeFile.Close
-    
-    ' Clean up
-    Set readFile = Nothing
-    Set writeFile = Nothing
-    Set FSO = Nothing
-End Sub
 
 Sub SaveTeam()
     Application.ScreenUpdating = False
