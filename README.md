@@ -13,11 +13,15 @@ Specifically, this can be used to:
 * Apply strategy fairy skills (Parachute, Construction, Suee, Combo)
 * Apply enemy debuffs (currently only EMP)
 
-\* I have noticed issues with G&K echelons not entering a fight after previously using SF echelons. The cause is unknown but I will try to fix this if I can figure out why this is.
-
 \** When simming HOCs, you should enter the FINAL stats if simming HOCs (i.e., including chip and iteration stats). The base stats will be adjusted to get the desired stats, so your HOCs will appear to be max iteration with blank chip boards.
 
 VBA code is provided in a separate .vb file so it can be examined. Place the spreadsheet in the parent directory of the battle sim (i.e., the same folder as GFBattleSimulator.json).
+
+# To Do:
+
+* Add other strategy fairy skills (e.g., Desert)
+* Add SF HOCs: https://gall.dcinside.com/mgallery/board/view/?id=micateam&no=1643988&t=cv
+* Add unity skills: https://gall.dcinside.com/mgallery/board/view/?id=micateam&no=1709646
 
 # Other Links:
 * KR Battle Sim: https://gall.dcinside.com/mgallery/board/view?id=micateam&no=1506585
