@@ -10,8 +10,10 @@ Specifically, this can be used to:
 * Edit SF echelon composition (ringleader/mooks, skill levels, positions, etc.)*
 * Edit fairy information (fairy, rarity, level, skill level, etc.)
 * Edit HOC information (stats, skill level, whether to use said HOC, etc.)**
-* Apply strategy fairy skills (Parachute, Construction, Suee, Combo)
-* Apply enemy debuffs (currently only EMP)
+* Apply strategy fairy skills (Parachute, Construction, Suee, Combo, etc.)
+* Apply enemy debuffs (currently only EMP, Auspicious)
+
+To enable unity skills, replace the default userinfo.json with the one in this repo. This new version simply has item IDs 1100001 to 1100006 added to the "item_with_user_info" section.
 
 \** When simming HOCs, you should enter the FINAL stats if simming HOCs (i.e., including chip and iteration stats). The base stats will be adjusted to get the desired stats, so your HOCs will appear to be max iteration with blank chip boards.
 
@@ -20,8 +22,7 @@ VBA code is provided in a separate .vb file so it can be examined. Place the spr
 # To Do:
 
 * Add other strategy fairy skills (e.g., Desert)
-* Add SF HOCs: https://gall.dcinside.com/mgallery/board/view/?id=micateam&no=1643988&t=cv
-* Add unity skills: https://gall.dcinside.com/mgallery/board/view/?id=micateam&no=1709646
+* Make this less janky (maybe)
 
 # Other Links:
 * KR Battle Sim: https://gall.dcinside.com/mgallery/board/view?id=micateam&no=1506585
