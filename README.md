@@ -28,6 +28,7 @@ VBA code is provided in a separate .vb file so it can be examined. Place the spr
 * KR Battle Sim: https://gall.dcinside.com/mgallery/board/view?id=micateam&no=1506585
 * GamePress guide: https://gamepress.gg/girlsfrontline/how-use-gf-battle-tester-girls-frontline-battle-tester
 * EN Battle Sim: https://github.com/neko-gg/gfl-combat-simulator
+* Data Source: https://github.com/randomqwerty/GFLData
 
 # Contact Info:
 * Discord: Randomqwerty#4678
