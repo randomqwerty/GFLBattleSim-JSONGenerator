@@ -5,7 +5,6 @@
 Option Explicit
 
 Sub KRSimJSON()
-    
     Call CreateJSON_A("Fairy", Range("FairyJSONPath").Value)
     Call CreateJSON_A("Equip", Range("EquipJSONPath").Value)
     Call CreateJSON_A("HOC", Range("HOCJSONPath").Value)
@@ -16,8 +15,11 @@ Sub KRSimJSON()
     
     Call CreateJSON_C("Mission_Act_Info", Range("MissionJSON").Value, 2)
     Call CreateJSON_C("GFBattleSimulator", Range("SimJSON").Value, 4)
+    Call CreateJSON_C("Spot_Act_Info_Day", Range("SpotDayJSON").Value, 8)
+    Call CreateJSON_C("Spot_Act_Info_Night", Range("SpotNightJSON").Value, 8)
     
     Call CreateSFTeamJSON("SF Team", Range("SFTeamJSONPath").Value) ' ugly mess
+    
     Call ChipJSON ' blank file
     MsgBox "Process completed."
 End Sub
@@ -245,7 +247,7 @@ Public Sub CreateSFTeamJSON(sheetName As String, fullFilePath As String)
     Dim wks As Worksheet: Set wks = wkb.Sheets(sheetName)
 
     Dim lcolumn As Long: lcolumn = 7
-    Dim lrow As Long: lrow = 2
+    Dim lrow As Long: lrow = 7
     
     Dim titles() As String
     ReDim titles(lcolumn)
@@ -288,15 +290,33 @@ Public Sub CreateSFTeamJSON(sheetName As String, fullFilePath As String)
                 
                 If titles(i) = "info" Then
                     Dim k As Integer
-                    For k = 1 To 9
-                        fileStream.WriteText fourspace & twospace & dq & k & dq & ": {" & vbNewLine
-                        fileStream.WriteText eightspace & dq & "sangvis_with_user_id" & dq & ": " & wks.Cells(k + 1, "J") & "," & vbNewLine
-                        fileStream.WriteText eightspace & dq & "position" & dq & ": " & wks.Cells(k + 1, "K") & vbNewLine
-                        fileStream.WriteText fourspace & twospace & "}"
-                        
-                        If k <> 9 Then fileStream.WriteText ","
-                        fileStream.WriteText vbNewLine
-                    Next k
+                    If j = 2 Then
+                        For k = 1 To 9
+                            fileStream.WriteText fourspace & twospace & dq & k & dq & ": {" & vbNewLine
+                            fileStream.WriteText eightspace & dq & "sangvis_with_user_id" & dq & ": " & wks.Cells(k + 1, "J") & "," & vbNewLine
+                            fileStream.WriteText eightspace & dq & "position" & dq & ": " & wks.Cells(k + 1, "K") & vbNewLine
+                            fileStream.WriteText fourspace & twospace & "}"
+                            
+                            If k <> 9 Then fileStream.WriteText ","
+                            fileStream.WriteText vbNewLine
+                        Next k
+                    Else
+                        For k = 1 To 9
+                            fileStream.WriteText fourspace & twospace & dq & k & dq & ": {" & vbNewLine
+                            
+                            If k = 1 Then
+                                fileStream.WriteText eightspace & dq & "sangvis_with_user_id" & dq & ": " & wks.Cells(j + 8, "J") & "," & vbNewLine
+                                fileStream.WriteText eightspace & dq & "position" & dq & ": " & wks.Cells(j + 8, "K") & vbNewLine
+                            Else
+                                fileStream.WriteText eightspace & dq & "sangvis_with_user_id" & dq & ": 0," & vbNewLine
+                                fileStream.WriteText eightspace & dq & "position" & dq & ": 0" & vbNewLine
+                            End If
+                            
+                            fileStream.WriteText fourspace & twospace & "}"
+                            If k <> 9 Then fileStream.WriteText ","
+                            fileStream.WriteText vbNewLine
+                        Next k
+                    End If
                     fileStream.WriteText fourspace & "}" & vbNewLine
                 End If
             Next i
@@ -306,11 +326,9 @@ Public Sub CreateSFTeamJSON(sheetName As String, fullFilePath As String)
             If j <> lrow Then
                 fileStream.WriteText ","
             End If
-            
-            fileStream.WriteText vbNewLine
         End If
     Next j
-    fileStream.WriteText "]"
+    fileStream.WriteText vbNewLine & "]"
     fileStream.SaveToFile fullFilePath, 2 'Save binary data To disk
 End Sub
 
@@ -331,12 +349,28 @@ Sub ChipJSON()
     fileStream.SaveToFile fullFilePath, 2 'Save binary data To disk
 End Sub
 
-
+Sub ClearInput()
+    With ThisWorkbook.Sheets("Main")
+        .Range("EchelonInput").ClearContents
+        .Range("CustomStatInput").ClearContents
+        .Range("FairyInput").ClearContents
+        .Range("PositionInput").ClearContents
+        
+        .Range("SFEchelonInput").ClearContents
+        .Range("SFCustomStatInput").ClearContents
+        .Range("SFPositionInput").ClearContents
+        
+        .Range("HOCSelection").ClearContents
+        .Range("SFHOCSelection").ClearContents
+        .Range("StrategyInput").ClearContents
+        .Range("DebuffSelection").ClearContents
+    End With
+End Sub
 Sub SaveTeam()
     Application.ScreenUpdating = False
     
     ' Get name for new preset
-    NewPresetName = InputBox("Enter a name for the new preset echelon:")
+    NewPresetName = InputBox("Enter a name for the new preset echelon:", "Preset Saving", ThisWorkbook.Sheets("Main").Range("Preset").Value)
     
     ' Exit if no input or cancelled
     If NewPresetName = vbCancel Or NewPresetName = "" Then
@@ -350,10 +384,19 @@ Sub SaveTeam()
         ' If echelon name doesn't exist, add it
         If result Is Nothing Then
             pasteRow = .Sheets("Preset Teams").Range("D1048576").End(xlUp).Row + 1
+            .Sheets("Preset Teams").Range("C" & pasteRow).Value = NewPresetName
             
+            ' Echelon input
             .Sheets("Main").Range("EchelonInput").Copy
             .Sheets("Preset Teams").Range("D" & pasteRow).PasteSpecial xlAll
-            .Sheets("Preset Teams").Range("C" & pasteRow).Value = NewPresetName
+            
+            ' Fairy input
+            .Sheets("Main").Range("FairyInput").Copy
+            .Sheets("Preset Teams").Range("AA" & pasteRow).PasteSpecial xlAll
+            
+            ' Position input
+            .Sheets("Main").Range("PositionInput").Copy
+            .Sheets("Preset Teams").Range("AG" & pasteRow).PasteSpecial xlAll
             Application.CutCopyMode = False
             
             ' Adjust list used for dropdown
@@ -370,6 +413,13 @@ Sub SaveTeam()
             rowNum = result.Row
             .Sheets("Main").Range("EchelonInput").Copy
             Sheets("Preset Teams").Range("D" & rowNum & ":Y" & rowNum + 4).PasteSpecial xlAll
+            
+            .Sheets("Main").Range("FairyInput").Copy
+            Sheets("Preset Teams").Range("AA" & rowNum & ":AE" & rowNum).PasteSpecial xlAll
+            
+            .Sheets("Main").Range("PositionInput").Copy
+            Sheets("Preset Teams").Range("AG" & rowNum & ":AY" & rowNum + 2).PasteSpecial xlAll
+            
             Application.CutCopyMode = False
         End If
     End With
@@ -390,6 +440,12 @@ Sub LoadTeam()
             rowNum = result.Row
             copyRange = .Sheets("Preset Teams").Range("D" & rowNum & ":Y" & rowNum + 4)
             .Sheets("Main").Range("EchelonInput").Value = copyRange
+            
+            copyRange = .Sheets("Preset Teams").Range("AA" & rowNum & ":AE" & rowNum)
+            .Sheets("Main").Range("FairyInput").Value = copyRange
+            
+            copyRange = .Sheets("Preset Teams").Range("AG" & rowNum & ":AI" & rowNum + 2)
+            .Sheets("Main").Range("PositionInput").Value = copyRange
         End If
     End With
     Application.ScreenUpdating = True
@@ -412,7 +468,7 @@ Sub DeleteTeam()
             Exit Sub
         Else
             rowNum = result.Row
-            .Sheets("Preset Teams").Range("C" & rowNum & ":Y" & rowNum + 4).Delete (xlShiftUp)
+            .Sheets("Preset Teams").Range("C" & rowNum & ":AI" & rowNum + 4).Delete (xlShiftUp)
             
             ' Delete from dropdown list
             rowNum = .Sheets("Preset Teams").Range("A:A").Find(presetName).Row
