@@ -480,3 +480,72 @@ Sub DeleteTeam()
     End With
     Application.ScreenUpdating = False
 End Sub
+
+Sub UpdateData()
+    With ThisWorkbook
+        Call Updater(.Sheets("Misc Inputs").Range("gunScript").Value, "gun", "'Doll Data'!A:A", .Sheets("Doll Data"))
+        Call Updater(.Sheets("Misc Inputs").Range("equipScript").Value, "equip", "'Equip Data'!A:A", .Sheets("Equip Data"))
+    End With
+End Sub
+
+Sub Updater(mScript As String, qryName As String, compareRange As String, outputSheet As Worksheet)
+' mScript: M script used in the actual PowerQuery
+' qryName: name of new query that will contain the M script
+' compareRange: range to compare new data against (only new data will be copied)
+' outputSheet: sheet to paste new data to (will be appended at the end)
+
+    Dim qry As WorkbookQuery
+    Dim tempSheet As Worksheet
+    
+    ' Add query and temporary sheet for data
+    Set qry = ThisWorkbook.Queries.Add(qryName, mScript)
+    Set tempSheet = ThisWorkbook.Sheets.Add
+    
+    ' Load data from query
+    With tempSheet.ListObjects.Add( _
+        SourceType:=0, _
+        Source:="OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=" & qry.Name, _
+        Destination:=Range("$A$1")).QueryTable
+        
+            .CommandType = xlCmdDefault
+            .CommandText = Array("SELECT * FROM [" & qry.Name & "]")
+            .RowNumbers = False
+            .FillAdjacentFormulas = False
+            .PreserveFormatting = True
+            .RefreshOnFileOpen = False
+            .BackgroundQuery = True
+            .RefreshStyle = xlInsertDeleteCells
+            .SavePassword = False
+            .SaveData = True
+            .AdjustColumnWidth = True
+            .RefreshPeriod = 0
+            .PreserveColumnInfo = False
+            .Refresh BackgroundQuery:=False
+    End With
+
+    ' Filter data for new entries only
+    newColumn = tempSheet.Range("A1").End(xlToRight).Column + 1
+    tempSheet.Cells(1, newColumn).Value = "Check"
+    tempSheet.Cells(2, newColumn).Formula = "=COUNTIF(" & compareRange & ", A2)"
+    tempSheet.ListObjects(1).Range.AutoFilter Field:=newColumn, Criteria1:=0
+    
+    ' Check if there is data to copy after filtering
+    On Error Resume Next
+    Set rngFiltered = Nothing
+    Set rngFiltered = tempSheet.ListObjects(1).DataBodyRange.SpecialCells(xlCellTypeVisible)
+    On Error GoTo 0
+    
+    ' Copy new data
+    If Not (rngFiltered Is Nothing) Then
+        endRow = outputSheet.Range("A1048576").End(xlUp).Row
+        tempSheet.ListObjects(1).DataBodyRange.SpecialCells(xlCellTypeVisible).Copy
+        outputSheet.Range("A" & endRow + 1).PasteSpecial xlPasteValues
+    End If
+    
+    ' Delete temp sheet, query, and workbook connection
+    Application.DisplayAlerts = False
+    tempSheet.Delete
+    qry.Delete
+    ThisWorkbook.Connections(1).Delete
+    Application.DisplayAlerts = False
+End Sub
