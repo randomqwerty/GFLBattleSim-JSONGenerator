@@ -351,137 +351,244 @@
 	End Sub
 
 ' SaveLoadClearInputs Module
-	Sub ClearInput()
-		With ThisWorkbook.Sheets("Main")
-			.Range("EchelonInput").ClearContents
-			.Range("CustomStatInput").ClearContents
-			.Range("FairyInput").ClearContents
-			.Range("PositionInput").ClearContents
-			
-			.Range("SFEchelonInput").ClearContents
-			.Range("SFCustomStatInput").ClearContents
-			.Range("SFPositionInput").ClearContents
-			
-			.Range("HOCSelection").ClearContents
-			.Range("SFHOCSelection").ClearContents
-			.Range("StrategyInput").ClearContents
-			.Range("DebuffSelection").ClearContents
-		End With
-	End Sub
-	Sub SaveTeam()
-		Application.ScreenUpdating = False
-		
-		' Get name for new preset
-		NewPresetName = InputBox("Enter a name for the new preset echelon:", "Preset Saving", ThisWorkbook.Sheets("Main").Range("Preset").Value)
-		
-		' Exit if no input or cancelled
-		If NewPresetName = vbCancel Or NewPresetName = "" Then
-			Application.ScreenUpdating = True
-			Exit Sub
-		End If
-		
-		With ThisWorkbook
-			Set result = .Sheets("Preset Teams").Range("C:C").Find(NewPresetName)
-			
-			' If echelon name doesn't exist, add it
-			If result Is Nothing Then
-				pasteRow = .Sheets("Preset Teams").Range("D1048576").End(xlUp).Row + 1
-				.Sheets("Preset Teams").Range("C" & pasteRow).Value = NewPresetName
-				
-				' Echelon input
-				.Sheets("Main").Range("EchelonInput").Copy
-				.Sheets("Preset Teams").Range("D" & pasteRow).PasteSpecial xlAll
-				
-				' Fairy input
-				.Sheets("Main").Range("FairyInput").Copy
-				.Sheets("Preset Teams").Range("AA" & pasteRow).PasteSpecial xlAll
-				
-				' Position input
-				.Sheets("Main").Range("PositionInput").Copy
-				.Sheets("Preset Teams").Range("AG" & pasteRow).PasteSpecial xlAll
-				Application.CutCopyMode = False
-				
-				' Adjust list used for dropdown
-				pasteRow = .Sheets("Preset Teams").Range("A1048576").End(xlUp).Row + 1
-				.Sheets("Preset Teams").Range("A" & pasteRow).Value = NewPresetName
-				.Sheets("Preset Teams").Sort.SetRange Range("ListOfPresets")
-				.Sheets("Preset Teams").Sort.Apply
-				
-				' Set dropdown box value
-				.Sheets("Main").Range("Preset").Value = NewPresetName
-				
-			' Else overwrite the existing data
-			Else
-				rowNum = result.Row
-				.Sheets("Main").Range("EchelonInput").Copy
-				Sheets("Preset Teams").Range("D" & rowNum & ":Y" & rowNum + 4).PasteSpecial xlAll
-				
-				.Sheets("Main").Range("FairyInput").Copy
-				Sheets("Preset Teams").Range("AA" & rowNum & ":AE" & rowNum).PasteSpecial xlAll
-				
-				.Sheets("Main").Range("PositionInput").Copy
-				Sheets("Preset Teams").Range("AG" & rowNum & ":AY" & rowNum + 2).PasteSpecial xlAll
-				
-				Application.CutCopyMode = False
-			End If
-		End With
-		
-		Application.ScreenUpdating = True
-	End Sub
+Sub ClearInput()
+    With ThisWorkbook.Sheets("Main")
+        .Range("EchelonInput").ClearContents
+        .Range("CustomStatInput").ClearContents
+        .Range("FairyInput").ClearContents
+        .Range("PositionInput").ClearContents
+        
+        .Range("SFEchelonInput").ClearContents
+        .Range("SFCustomStatInput").ClearContents
+        .Range("SFPositionInput").ClearContents
+        
+        .Range("HOCSelection").ClearContents
+        .Range("SFHOCSelection").ClearContents
+        .Range("StrategyInput").ClearContents
+        .Range("DebuffSelection").ClearContents
+    End With
+End Sub
+Sub SaveTeam()
+    Application.ScreenUpdating = False
+    
+    ' Get name for new preset
+    NewPresetName = InputBox("Enter a name for the new preset echelon:", "Preset Saving", ThisWorkbook.Sheets("Main").Range("Preset").Value)
+    
+    ' Exit if no input or cancelled
+    If NewPresetName = vbCancel Or NewPresetName = "" Then
+        Application.ScreenUpdating = True
+        Exit Sub
+    End If
+    
+    With ThisWorkbook
+        Set result = .Sheets("Preset Teams").Range("C:C").Find(NewPresetName)
+        
+        ' If echelon name doesn't exist, add it
+        If result Is Nothing Then
+            pasteRow = .Sheets("Preset Teams").Range("C1048576").End(xlUp).Row + 5
+            .Sheets("Preset Teams").Range("C" & pasteRow).Value = NewPresetName
+            
+            ' Echelon input
+            .Sheets("Main").Range("EchelonInput").Copy
+            .Sheets("Preset Teams").Range("D" & pasteRow).PasteSpecial xlAll
+            
+            ' Fairy input
+            .Sheets("Main").Range("FairyInput").Copy
+            .Sheets("Preset Teams").Range("AA" & pasteRow).PasteSpecial xlAll
+            
+            ' Position input
+            .Sheets("Main").Range("PositionInput").Copy
+            .Sheets("Preset Teams").Range("AG" & pasteRow).PasteSpecial xlAll
+            Selection.FormatConditions.Delete
+            
+            ' Adjust list used for dropdown
+            pasteRow = .Sheets("Preset Teams").Range("A1048576").End(xlUp).Row + 1
+            .Sheets("Preset Teams").Range("A" & pasteRow).Value = NewPresetName
+            .Sheets("Preset Teams").Sort.SetRange Range("ListOfPresets")
+            .Sheets("Preset Teams").Sort.Apply
+            
+            ' Set dropdown box value
+            .Sheets("Main").Range("Preset").Value = NewPresetName
+            
+        ' Else overwrite the existing data
+        Else
+            rowNum = result.Row
+            .Sheets("Main").Range("EchelonInput").Copy
+            Sheets("Preset Teams").Range("D" & rowNum & ":Y" & rowNum + 4).PasteSpecial xlAll
+            
+            .Sheets("Main").Range("FairyInput").Copy
+            Sheets("Preset Teams").Range("AA" & rowNum & ":AE" & rowNum).PasteSpecial xlAll
+            
+            .Sheets("Main").Range("PositionInput").Copy
+            Sheets("Preset Teams").Range("AG" & rowNum & ":AY" & rowNum + 2).PasteSpecial xlAll
+            Application.CutCopyMode = False
+        End If
+    End With
+    
+    Sheets("Preset Teams").Range("D:AI").FormatConditions.Delete
+    Sheets("Preset Teams").Range("D:AI").Validation.Delete
+    Application.ScreenUpdating = True
+End Sub
 
-	Sub LoadTeam()
-		Application.ScreenUpdating = False
-		With ThisWorkbook
-			presetName = .Sheets("Main").Range("Preset").Value
-			Set result = .Sheets("Preset Teams").Range("C:C").Find(presetName)
-			
-			If result Is Nothing Then
-				Application.ScreenUpdating = True
-				Exit Sub
-			Else
-				rowNum = result.Row
-				copyRange = .Sheets("Preset Teams").Range("D" & rowNum & ":Y" & rowNum + 4)
-				.Sheets("Main").Range("EchelonInput").Value = copyRange
-				
-				copyRange = .Sheets("Preset Teams").Range("AA" & rowNum & ":AE" & rowNum)
-				.Sheets("Main").Range("FairyInput").Value = copyRange
-				
-				copyRange = .Sheets("Preset Teams").Range("AG" & rowNum & ":AI" & rowNum + 2)
-				.Sheets("Main").Range("PositionInput").Value = copyRange
-			End If
-		End With
-		Application.ScreenUpdating = True
-	End Sub
+Sub LoadTeam()
+    Application.ScreenUpdating = False
+    With ThisWorkbook
+        presetName = .Sheets("Main").Range("Preset").Value
+        Set result = .Sheets("Preset Teams").Range("C:C").Find(presetName)
+        
+        If result Is Nothing Then
+            Application.ScreenUpdating = True
+            Exit Sub
+        Else
+            rowNum = result.Row
+            copyRange = .Sheets("Preset Teams").Range("D" & rowNum & ":Y" & rowNum + 4)
+            .Sheets("Main").Range("EchelonInput").Value = copyRange
+            
+            copyRange = .Sheets("Preset Teams").Range("AA" & rowNum & ":AE" & rowNum)
+            .Sheets("Main").Range("FairyInput").Value = copyRange
+            
+            copyRange = .Sheets("Preset Teams").Range("AG" & rowNum & ":AI" & rowNum + 2)
+            .Sheets("Main").Range("PositionInput").Value = copyRange
+        End If
+    End With
+    Application.ScreenUpdating = True
+End Sub
 
-	Sub DeleteTeam()
-		Application.ScreenUpdating = False
-		' Ask user to confirm before deletion
-		prompt = MsgBox("Pressing 'OK' will delete the preset echelon from the 'Teams' tab. Are you sure you want to continue?", vbYesNo)
-		If prompt = vbNo Then Exit Sub
+Sub DeleteTeam()
+    Application.ScreenUpdating = False
+    ' Ask user to confirm before deletion
+    prompt = MsgBox("Pressing 'OK' will delete the preset echelon from the 'Preset Teams' tab. Are you sure you want to continue?", vbYesNo)
+    If prompt = vbNo Then Exit Sub
 
-		With ThisWorkbook
-			presetName = .Sheets("Main").Range("Preset").Value
-			
-			' Delete echelon input
-			Set result = .Sheets("Preset Teams").Range("C:C").Find(presetName)
-			
-			If result Is Nothing Then
-				Application.ScreenUpdating = True
-				Exit Sub
-			Else
-				rowNum = result.Row
-				.Sheets("Preset Teams").Range("C" & rowNum & ":AI" & rowNum + 4).Delete (xlShiftUp)
-				
-				' Delete from dropdown list
-				rowNum = .Sheets("Preset Teams").Range("A:A").Find(presetName).Row
-				.Sheets("Preset Teams").Range("A" & rowNum).Delete (xlShiftUp)
-				
-				' Clear dropdown box
-				.Sheets("Main").Range("Preset").Value = ""
-			End If
-		End With
-		Application.ScreenUpdating = False
-	End Sub
+    With ThisWorkbook
+        presetName = .Sheets("Main").Range("Preset").Value
+        
+        ' Delete echelon input
+        Set result = .Sheets("Preset Teams").Range("C:C").Find(presetName)
+        
+        If result Is Nothing Then
+            Application.ScreenUpdating = True
+            Exit Sub
+        Else
+            rowNum = result.Row
+            .Sheets("Preset Teams").Range("C" & rowNum & ":AI" & rowNum + 4).Delete (xlShiftUp)
+            
+            ' Delete from dropdown list
+            rowNum = .Sheets("Preset Teams").Range("A:A").Find(presetName).Row
+            .Sheets("Preset Teams").Range("A" & rowNum).Delete (xlShiftUp)
+            
+            ' Clear dropdown box
+            .Sheets("Main").Range("Preset").Value = ""
+        End If
+    End With
+    Application.ScreenUpdating = False
+End Sub
+
+Sub SaveTeamSF()
+    Application.ScreenUpdating = False
+    
+    ' Get name for new preset
+    NewPresetName = InputBox("Enter a name for the new preset echelon:", "Preset Saving", ThisWorkbook.Sheets("Main").Range("PresetSF").Value)
+    
+    ' Exit if no input or cancelled
+    If NewPresetName = vbCancel Or NewPresetName = "" Then
+        Application.ScreenUpdating = True
+        Exit Sub
+    End If
+    
+    With ThisWorkbook
+        Set result = .Sheets("Preset Teams SF").Range("C:C").Find(NewPresetName)
+        
+        ' If echelon name doesn't exist, add it
+        If result Is Nothing Then
+            pasteRow = .Sheets("Preset Teams SF").Range("C1048576").End(xlUp).Row + 9
+            .Sheets("Preset Teams SF").Range("C" & pasteRow).Value = NewPresetName
+            
+            ' Echelon input
+            .Sheets("Main").Range("SFEchelonInput").Copy
+            .Sheets("Preset Teams SF").Range("D" & pasteRow).PasteSpecial xlAll
+            
+            ' Position input
+            .Sheets("Main").Range("SFPositionInput").Copy
+            .Sheets("Preset Teams SF").Range("Q" & pasteRow).PasteSpecial xlAll
+            Application.CutCopyMode = False
+            
+            ' Adjust list used for dropdown
+            pasteRow = .Sheets("Preset Teams SF").Range("A1048576").End(xlUp).Row + 1
+            .Sheets("Preset Teams SF").Range("A" & pasteRow).Value = NewPresetName
+            .Sheets("Preset Teams SF").Sort.SetRange Range("ListOfPresetsSF")
+            .Sheets("Preset Teams SF").Sort.Apply
+            
+            ' Set dropdown box value
+            .Sheets("Main").Range("PresetSF").Value = NewPresetName
+            
+        ' Else overwrite the existing data
+        Else
+            rowNum = result.Row
+            .Sheets("Main").Range("SFEchelonInput").Copy
+            Sheets("Preset Teams SF").Range("D" & rowNum & ":Y" & rowNum + 8).PasteSpecial xlAll
+            
+            .Sheets("Main").Range("SFPositionInput").Copy
+            Sheets("Preset Teams SF").Range("Q" & rowNum & ":AY" & rowNum + 2).PasteSpecial xlAll
+            Application.CutCopyMode = False
+        End If
+    End With
+    
+    Sheets("Preset Teams SF").Range("D:S").FormatConditions.Delete
+    Sheets("Preset Teams SF").Range("D:S").Validation.Delete
+    Application.ScreenUpdating = True
+End Sub
+
+Sub LoadTeamSF()
+    Application.ScreenUpdating = False
+    With ThisWorkbook
+        presetName = .Sheets("Main").Range("PresetSF").Value
+        Set result = .Sheets("Preset Teams SF").Range("C:C").Find(presetName)
+        
+        If result Is Nothing Then
+            Application.ScreenUpdating = True
+            Exit Sub
+        Else
+            rowNum = result.Row
+            copyRange = .Sheets("Preset Teams SF").Range("D" & rowNum & ":O" & rowNum + 8)
+            .Sheets("Main").Range("SFEchelonInput").Value = copyRange
+            
+            copyRange = .Sheets("Preset Teams SF").Range("Q" & rowNum & ":S" & rowNum + 2)
+            .Sheets("Main").Range("SFPositionInput").Value = copyRange
+        End If
+    End With
+    Application.ScreenUpdating = True
+End Sub
+
+Sub DeleteTeamSF()
+    Application.ScreenUpdating = False
+    ' Ask user to confirm before deletion
+    prompt = MsgBox("Pressing 'OK' will delete the preset echelon from the 'Preset Teams SF' tab. Are you sure you want to continue?", vbYesNo)
+    If prompt = vbNo Then Exit Sub
+
+    With ThisWorkbook
+        presetName = .Sheets("Main").Range("PresetSF").Value
+        
+        ' Delete echelon input
+        Set result = .Sheets("Preset Teams SF").Range("C:C").Find(presetName)
+        
+        If result Is Nothing Then
+            Application.ScreenUpdating = True
+            Exit Sub
+        Else
+            rowNum = result.Row
+            .Sheets("Preset Teams SF").Range("C" & rowNum & ":S" & rowNum + 8).Delete (xlShiftUp)
+            
+            ' Delete from dropdown list
+            rowNum = .Sheets("Preset Teams SF").Range("A:A").Find(presetName).Row
+            .Sheets("Preset Teams SF").Range("A" & rowNum).Delete (xlShiftUp)
+            
+            ' Clear dropdown box
+            .Sheets("Main").Range("PresetSF").Value = ""
+        End If
+    End With
+    Application.ScreenUpdating = False
+End Sub
 
 ' DataUpdater Module
 	Sub UpdateData()
