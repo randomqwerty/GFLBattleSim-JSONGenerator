@@ -1,6 +1,8 @@
 # GFLBattleSim-JSONGenerator
 <img src="https://i.imgur.com/qIBZMB6.png" width="100%">
 
+**IMPORTANT NOTE: Due to the introduction of client v2.09 and the equipment index, you will need to replace the default userinfo.json with the one in this repo. This version adds the equip_collect field that the client is expecting.**
+
 This is a macro-enabled Excel spreadsheet that will generate/modify the JSON files needed for the GFL KR Battle Sim.
 
 Specifically, this can be used to:
@@ -17,14 +19,14 @@ Specifically, this can be used to:
 VBA code is provided in a separate .vb file so it can be examined. Place the spreadsheet in the parent directory of the battle sim (i.e., the same folder as GFBattleSimulator.json).
 
 # Additional Usage Notes:
-* Unity Skills can be enabled by replacing the default userinfo.json with the one in this repo. This new version simply has item IDs 1100001 to 1100006 added to the "item_with_user_info" section.
+* As mentioned above, please replace the default userinfo.json with the one in this repo. This new version adds the equip_collect field (used for the equipment index) and also enables Unity Skills by adding items IDs 1100001-1100006 to item_with_user_info.
 * When entering G&K HOC stats, use the FINAL stats including chips and iteration bonuses. The base stats will be adjusted to get the desired stats, so your HOCs will appear to be max iteration and have blank chip boards.
 * You cannot sim more than 8 G&K HOCs at a time. This appears to be an issue with the sim itself.
 * There are issues with simming G&K directly after simming SF echelons. If you want to switch back to G&K, you should generate the new JSONs (or use the ones from the original sim download) and restart the sim .exe.
 
 # To Do:
 * Add other strategy fairy skills (e.g., Desert)
-* Make this less janky (maybe)
+* Possible code/formatting clean up
 
 # Other Links:
 * KR Battle Sim: https://gall.dcinside.com/mgallery/board/view?id=micateam&no=1506585
@@ -34,3 +36,4 @@ VBA code is provided in a separate .vb file so it can be examined. Place the spr
 
 # Contact Info:
 * Discord: Randomqwerty#4678
+* Reddit: /u/UnironicWeeaboo
