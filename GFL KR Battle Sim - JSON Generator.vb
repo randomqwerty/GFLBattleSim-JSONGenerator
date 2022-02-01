@@ -694,9 +694,12 @@ Sub UpdateWorkbook()
     URLDownloadToFile 0, newFileURL, oldName, 0, 0
     
     ' Open new workbook and delete this workbook
-    Workbooks.Open (oldName)
+    Set newBook = Workbooks.Open(oldName)
     ThisWorkbook.Saved = True
     ThisWorkbook.ChangeFileAccess xlReadOnly
     Kill ThisWorkbook.FullName
+    
+    ' Show message after updating workbook
+    MsgBox (newBook.Sheets("Misc Inputs").Range("UpdateMessage").Value)
     ThisWorkbook.Close SaveChanges:=False
 End Sub
