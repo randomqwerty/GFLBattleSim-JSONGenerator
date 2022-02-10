@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SheetData>
+  <UpdateDate>February 9, 2022</UpdateDate>
+  <Message>&#xA;- Change workbook updater to display message from an XML file hosted on GitHub instead of in a cell (for ease of updating the message).</Message>
+</SheetData>
