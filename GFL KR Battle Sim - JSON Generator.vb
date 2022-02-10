@@ -699,7 +699,16 @@ Sub UpdateWorkbook()
     ThisWorkbook.ChangeFileAccess xlReadOnly
     Kill ThisWorkbook.FullName
     
-    ' Show message after updating workbook
-    MsgBox (newBook.Sheets("Misc Inputs").Range("UpdateMessage").Value)
+    ' Load XML file from GitHub
+    Set XDoc = CreateObject("MSXML2.DOMDocument")
+    XDoc.async = False: XDoc.validateOnParse = False
+    XDoc.Load ("https://raw.githubusercontent.com/randomqwerty/randomqwerty_gfl/main/change.xml")
+    
+    ' Get data and display message
+    Set updateDate = XDoc.getElementsByTagName("UpdateDate")
+    Set updateMessage = XDoc.getElementsByTagName("Message")
+    MsgBox ("Successfully updated workbook to version as of " & updateDate(0).Text & ":" & vbNewLine & vbNewLine & updateMessage(0).Text)
+    
+    ' Close this workbook now that it has been replaced
     ThisWorkbook.Close SaveChanges:=False
 End Sub
