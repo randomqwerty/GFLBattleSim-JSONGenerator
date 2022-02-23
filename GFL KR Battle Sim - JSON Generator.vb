@@ -381,7 +381,7 @@ Sub SaveTeam()
     End If
     
     With ThisWorkbook
-        Set result = .Sheets("Preset Teams").Range("C:C").Find(NewPresetName)
+        Set result = .Sheets("Preset Teams").Range("C:C").Find(NewPresetName, LookAt:=xlWhole)
         
         ' If echelon name doesn't exist, add it
         If result Is Nothing Then
@@ -434,7 +434,7 @@ Sub LoadTeam()
     Application.ScreenUpdating = False
     With ThisWorkbook
         presetName = .Sheets("Main").Range("Preset").Value
-        Set result = .Sheets("Preset Teams").Range("C:C").Find(presetName)
+        Set result = .Sheets("Preset Teams").Range("C:C").Find(presetName, LookAt:=xlWhole)
         
         If result Is Nothing Then
             Application.ScreenUpdating = True
@@ -464,7 +464,7 @@ Sub DeleteTeam()
         presetName = .Sheets("Main").Range("Preset").Value
         
         ' Delete echelon input
-        Set result = .Sheets("Preset Teams").Range("C:C").Find(presetName)
+        Set result = .Sheets("Preset Teams").Range("C:C").Find(presetName, LookAt:=xlWhole)
         
         If result Is Nothing Then
             Application.ScreenUpdating = True
@@ -474,7 +474,7 @@ Sub DeleteTeam()
             .Sheets("Preset Teams").Range("C" & rowNum & ":AO" & rowNum + 4).Delete (xlShiftUp)
             
             ' Delete from dropdown list
-            rowNum = .Sheets("Preset Teams").Range("A:A").Find(presetName).Row
+            rowNum = .Sheets("Preset Teams").Range("A:A").Find(presetName, LookAt:=xlWhole).Row
             .Sheets("Preset Teams").Range("A" & rowNum).Delete (xlShiftUp)
             
             ' Clear dropdown box
@@ -497,7 +497,7 @@ Sub SaveTeamSF()
     End If
     
     With ThisWorkbook
-        Set result = .Sheets("Preset Teams SF").Range("C:C").Find(NewPresetName)
+        Set result = .Sheets("Preset Teams SF").Range("C:C").Find(NewPresetName, LookAt:=xlWhole)
         
         ' If echelon name doesn't exist, add it
         If result Is Nothing Then
@@ -550,7 +550,7 @@ Sub LoadTeamSF()
     Application.ScreenUpdating = False
     With ThisWorkbook
         presetName = .Sheets("Main").Range("PresetSF").Value
-        Set result = .Sheets("Preset Teams SF").Range("C:C").Find(presetName)
+        Set result = .Sheets("Preset Teams SF").Range("C:C").Find(presetName, LookAt:=xlWhole)
         
         If result Is Nothing Then
             Application.ScreenUpdating = True
@@ -580,7 +580,7 @@ Sub DeleteTeamSF()
         presetName = .Sheets("Main").Range("PresetSF").Value
         
         ' Delete echelon input
-        Set result = .Sheets("Preset Teams SF").Range("C:C").Find(presetName)
+        Set result = .Sheets("Preset Teams SF").Range("C:C").Find(presetName, LookAt:=xlWhole)
         
         If result Is Nothing Then
             Application.ScreenUpdating = True
@@ -590,7 +590,7 @@ Sub DeleteTeamSF()
             .Sheets("Preset Teams SF").Range("C" & rowNum & ":U" & rowNum + 8).Delete (xlShiftUp)
             
             ' Delete from dropdown list
-            rowNum = .Sheets("Preset Teams SF").Range("A:A").Find(presetName).Row
+            rowNum = .Sheets("Preset Teams SF").Range("A:A").Find(presetName, LookAt:=xlWhole).Row
             .Sheets("Preset Teams SF").Range("A" & rowNum).Delete (xlShiftUp)
             
             ' Clear dropdown box
@@ -702,7 +702,7 @@ Sub UpdateWorkbook()
     ' Load XML file from GitHub
     Set XDoc = CreateObject("MSXML2.DOMDocument")
     XDoc.async = False: XDoc.validateOnParse = False
-    XDoc.Load ("https://raw.githubusercontent.com/randomqwerty/randomqwerty_gfl/main/change.xml")
+    XDoc.Load ("https://raw.githubusercontent.com/randomqwerty/GFLBattleSim-JSONGenerator/main/change.xml")
     
     ' Get data and display message
     Set updateDate = XDoc.getElementsByTagName("UpdateDate")
