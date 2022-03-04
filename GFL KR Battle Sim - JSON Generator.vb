@@ -603,8 +603,10 @@ End Sub
 ' DataUpdater Module
 Sub UpdateData()
     With ThisWorkbook
-        Call Updater(.Sheets("Misc Inputs").Range("gunScript").Value, "gun", "'Doll Data'!A:A", .Sheets("Doll Data"))
-        Call Updater(.Sheets("Misc Inputs").Range("equipScript").Value, "equip", "'Equip Data'!A:A", .Sheets("Equip Data"))
+		Call Updater(.Sheets("Misc Inputs").Range("gunScript").Value, "gun", "'Doll Data'!A:A", .Sheets("Doll Data"))
+		Call Updater(.Sheets("Misc Inputs").Range("equipScript").Value, "equip", "'Equip Data'!A:A", .Sheets("Equip Data"))
+		Call Updater(.Sheets("Misc Inputs").Range("sfScript").Value, "sangvis", "'SF Data'!A:A", .Sheets("SF Data"))
+		Call Updater(.Sheets("Misc Inputs").Range("sfResolScript").Value, "sangvis_resolution", "'SF Resolution'!A:A", .Sheets("SF Resolution"))
     End With
 End Sub
 
@@ -707,7 +709,7 @@ Sub UpdateWorkbook()
     ' Get data and display message
     Set updateDate = XDoc.getElementsByTagName("UpdateDate")
     Set updateMessage = XDoc.getElementsByTagName("Message")
-    MsgBox ("Successfully updated workbook to version as of " & updateDate(0).Text & ":" & vbNewLine & vbNewLine & updateMessage(0).Text)
+    MsgBox ("Successfully updated workbook to version as of " & updateDate(0).Text & ":" & vbNewLine & vbNewLine & updateMessage(0).Text & vbNewLine & vbNewLine & "For a more complete list of changes, please see the commit history on the repo.")
     
     ' Close this workbook now that it has been replaced
     ThisWorkbook.Close SaveChanges:=False

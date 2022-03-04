@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>March 1, 2022</UpdateDate>
-  <Message>&#xA;- Add Rocket fairy to strategy skills section.&#xA;- Add Desert Fairy to strategy skills section. To properly sim this, you must enable both components IN THIS ORDER: "Desert 1 (negation)" and "Desert 2 (debuff)". The former applies the debuffs, the latter will remove its effects from your echelon.</Message>
+  <UpdateDate>March 3, 2022</UpdateDate>
+  <Message>&#xA;- Add new SF: Vespid_Bride and Hunter_WhiteDay.&#xA;- Add new SPEQ: P90.&#xA;- Minor text edits, add SF to DataUpdater macros.</Message>
 </SheetData>
