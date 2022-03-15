@@ -704,16 +704,18 @@ Sub UpdateWorkbook()
     
     ' Transfer echelon presets
     If transferPresets = vbYes Then
+        Application.Calculation = xlCalculationManual
         ' G&K
-        newBook.Sheets("Preset Teams").Range("A4:AO1048576").Clear
-        ThisWorkbook.Sheets("Preset Teams").Range("A4:AO1048576").Copy
-        newBook.Sheets("Preset Teams").Range("A4").Paste
+        newBook.Sheets("Preset Teams").Range("A4:AO1000").Clear
+        ThisWorkbook.Sheets("Preset Teams").Range("A4:AO1000").Copy
+        newBook.Sheets("Preset Teams").Range("A4").PasteSpecial
         
         ' SF
-        newBook.Sheets("Preset Teams SF").Range("A4:AO1048576").Clear
-        ThisWorkbook.Sheets("Preset Teams SF").Range("A4:AO1048576").Copy
-        newBook.Sheets("Preset Teams SF").Range("A4").Paste
+        newBook.Sheets("Preset Teams SF").Range("A4:AO1000").Clear
+        ThisWorkbook.Sheets("Preset Teams SF").Range("A4:AO1000").Copy
+        newBook.Sheets("Preset Teams SF").Range("A4").PasteSpecial
         Application.CutCopyMode = False
+        Application.Calculation = xlCalculationAutomatic
     End If
     
     ' Load XML file from GitHub
