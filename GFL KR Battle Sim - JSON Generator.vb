@@ -683,6 +683,7 @@ Private Declare PtrSafe Function URLDownloadToFile Lib "urlmon" _
 
 Sub UpdateWorkbook()
     If MsgBox("This workbook will be deleted and replaced with the latest version from GitHub. Continue?", vbYesNo) = vbNo Then Exit Sub
+    transferPresets = MsgBox("Would you like to transfer echelon presets to the new workbook?", vbYesNo)
     
     ' Store this workbook's name in a variable so it can be used later
     oldName = ThisWorkbook.FullName
@@ -700,6 +701,20 @@ Sub UpdateWorkbook()
     ThisWorkbook.Saved = True
     ThisWorkbook.ChangeFileAccess xlReadOnly
     Kill ThisWorkbook.FullName
+    
+    ' Transfer echelon presets
+    If transferPresets = vbYes Then
+        ' G&K
+        newBook.Sheets("Preset Teams").Range("A4:AO1048576").Clear
+        ThisWorkbook.Sheets("Preset Teams").Range("A4:AO1048576").Copy
+        newBook.Sheets("Preset Teams").Range("A4").Paste
+        
+        ' SF
+        newBook.Sheets("Preset Teams SF").Range("A4:AO1048576").Clear
+        ThisWorkbook.Sheets("Preset Teams SF").Range("A4:AO1048576").Copy
+        newBook.Sheets("Preset Teams SF").Range("A4").Paste
+        Application.CutCopyMode = False
+    End If
     
     ' Load XML file from GitHub
     Set XDoc = CreateObject("MSXML2.DOMDocument")
