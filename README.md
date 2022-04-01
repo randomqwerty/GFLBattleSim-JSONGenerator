@@ -23,7 +23,7 @@ VBA code is provided in a separate .vb file so it can be examined. Place the spr
 * When entering G&K HOC stats, use the FINAL stats including chips and iteration bonuses. The base stats will be adjusted to get the desired stats, so your HOCs will appear to be max iteration and have blank chip boards.
 * You cannot sim more than 8 G&K HOCs at a time. This appears to be an issue with the sim itself.
 * There are issues with simming G&K directly after simming SF echelons. If you want to switch back to G&K, you should generate the new JSONs (or use the ones from the original sim download) and restart the sim .exe.
-* To properly sim Desert Fairy, you should activate both components in the strategy skill section in this order: "Desert 1 (negation)" and "Desert 2 (debuff)". The former applies the debuff to you and the enemy, the latter negates the effect on your echelon.
+* To properly sim Desert Fairy, you should activate both components in the strategy skill section in this order: "Desert 1 (negation)" and "Desert 2 (debuff)". The  latter applies the debuff to you and the enemy, the former negates the effect on your echelon.
 
 # To Do:
 * Possible code/formatting clean up
