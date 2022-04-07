@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>April 1, 2022</UpdateDate>
-  <Message>&#xA;- Fix errors in doll dropdowns for QBZ191, TFQ, Dana.</Message>
+  <UpdateDate>April 7, 2022</UpdateDate>
+  <Message>&#xA;- Add new SPEQs: P22, M1 Garand, T77, SVT38, 64Shiki (Howa64).&#xA;- Add new dolls: MPL, MPK, SCR.&#xA;- Update userinfo.json to contain unity skill for MPK and MPL.</Message>
 </SheetData>

@@ -19,7 +19,7 @@ Specifically, this can be used to:
 VBA code is provided in a separate .vb file so it can be examined. Place the spreadsheet in the parent directory of the battle sim (i.e., the same folder as GFBattleSimulator.json).
 
 # Additional Usage Notes:
-* As mentioned above, please replace the default userinfo.json with the one in this repo. This new version adds the equip_collect field (used for the equipment index) and also enables Unity Skills by adding items IDs 1100001-1100006 to item_with_user_info.
+* As mentioned above, please replace the default userinfo.json with the one in this repo. This new version adds the equip_collect field (used for the equipment index) and also enables Unity Skills by adding items IDs 1100001-1100008 to item_with_user_info. This is also needed to sim MPK and MPK properly.
 * When entering G&K HOC stats, use the FINAL stats including chips and iteration bonuses. The base stats will be adjusted to get the desired stats, so your HOCs will appear to be max iteration and have blank chip boards.
 * You cannot sim more than 8 G&K HOCs at a time. This appears to be an issue with the sim itself.
 * There are issues with simming G&K directly after simming SF echelons. If you want to switch back to G&K, you should generate the new JSONs (or use the ones from the original sim download) and restart the sim .exe.
