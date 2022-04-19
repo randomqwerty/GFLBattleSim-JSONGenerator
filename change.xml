@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>April 7, 2022</UpdateDate>
-  <Message>&#xA;- Add new SPEQs: P22, M1 Garand, T77, SVT38, 64Shiki (Howa64).&#xA;- Add new dolls: MPL, MPK, SCR.&#xA;- Update userinfo.json to contain unity skill for MPK and MPL.</Message>
+  <UpdateDate>April 19, 2022</UpdateDate>
+  <Message>&#xA;Minor adjustments to make the workbook more compatible with LibreOffice Calc:&#xA;- Misc Inputs tab: add fallback formulas to create file paths to JSON files while on LibreOffice. &#xA;- Dropdowns tab: Create explicit dropdowns for each doll/equipment selection instead of using dynamic named ranges. &#xA;- Unhide more worksheets and sections of the Main tab to avoid issues with LibreOffice.</Message>
 </SheetData>
