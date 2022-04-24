@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>April 19, 2022</UpdateDate>
-  <Message>&#xA;Minor adjustments to make the workbook more compatible with LibreOffice Calc:&#xA;- Misc Inputs tab: add fallback formulas to create file paths to JSON files while on LibreOffice. &#xA;- Dropdowns tab: Create explicit dropdowns for each doll/equipment selection instead of using dynamic named ranges. &#xA;- Unhide more worksheets and sections of the Main tab to avoid issues with LibreOffice.</Message>
+  <UpdateDate>April 24, 2022</UpdateDate>
+  <Message>&#xA;Add section to generate basic equipment presets based on doll classes (below the regular equipment inputs). Copy and paste values to the area above and adjust as needed; does not account for SPEQs.</Message>
 </SheetData>
