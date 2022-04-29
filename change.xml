@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>April 24, 2022</UpdateDate>
-  <Message>&#xA;Add section to generate basic equipment presets based on doll classes (below the regular equipment inputs). Copy and paste values to the area above and adjust as needed; does not account for SPEQs.</Message>
+  <UpdateDate>April 28, 2022</UpdateDate>
+  <Message>&#xA;- Add new SF Unit: Cerberus.&#xA;- Add new SPEQ: M82A1 (note that it does not have a skill yet, wait for a later maintenance).</Message>
 </SheetData>
