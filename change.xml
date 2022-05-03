@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>April 28-29, 2022</UpdateDate>
-  <Message>&#xA;- Add new SF Unit: Cerberus.&#xA;- Add new SPEQ: M82A1 (note that it does not have a skill yet, wait for a later maintenance).&#xA;- Add Judge/Agent strategy skills.&#xA;- Fix bug where strategy skills could not be applied to SF.</Message>
+  <UpdateDate>May 3, 2022</UpdateDate>
+  <Message>&#xA;- Update preloaded HOC stats, mostly for PP93 given the recent fixes to their resonance bonuses.</Message>
 </SheetData>
