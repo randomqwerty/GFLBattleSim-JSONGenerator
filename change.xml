@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>May 20, 2022</UpdateDate>
-  <Message>&#xA;- Fix MS Hole 1 preset's stats, set to mod2 to match vods, set to 0 affection instead of 50.</Message>
+  <UpdateDate>May 30, 2022</UpdateDate>
+  <Message>&#xA;- New SPEQ: Ak5.&#xA;- Add ability to set RNG seed for Day/Night mode.&#xA;- Adjust load/delete preset code so it will not run if preset name is blank.&#xA;- Misc Cleanup (cell comments, allow skill levels to be 0 to disable skills, small fixes to presets)</Message>
 </SheetData>
