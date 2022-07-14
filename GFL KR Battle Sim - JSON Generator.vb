@@ -702,6 +702,7 @@
 	Sub UpdateWorkbook()
 		If MsgBox("This workbook will be deleted and replaced with the latest version from GitHub. Continue?", vbYesNo) = vbNo Then Exit Sub
 		transferPresets = MsgBox("Would you like to transfer echelon presets to the new workbook?", vbYesNo)
+		downloadUserinfo = MsgBox("Would you like to download the latest userinfo.json?", vbYesNo)
 		
 		' Store this workbook's name in a variable so it can be used later
 		oldName = ThisWorkbook.FullName
@@ -714,6 +715,12 @@
 		newFileURL = "https://github.com/randomqwerty/GFLBattleSim-JSONGenerator/raw/main/GFL%20KR%20Battle%20Sim%20-%20JSON%20Generator.xlsm"
 		URLDownloadToFile 0, newFileURL, oldName, 0, 0
 		
+		' Download userinfo.json from GitHub if user said yes
+		If downloadUserinfo = vbYes Then
+			newFileURL = "https://raw.githubusercontent.com/randomqwerty/GFLBattleSim-JSONGenerator/main/userinfo.json"
+			URLDownloadToFile 0, newFileURL, ThisWorkbook.Path & "\Preset\userinfo.json", 0, 0
+		End If
+	
 		' Open new workbook and delete this workbook
 		Set newBook = Workbooks.Open(oldName)
 		ThisWorkbook.Saved = True
