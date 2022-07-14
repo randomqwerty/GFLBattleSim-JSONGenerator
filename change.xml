@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>July 13, 2022</UpdateDate>
-  <Message>&#xA;- Add ability to download userinfo.json from GitHub when downloading latest version of the workbook.</Message>
+  <UpdateDate>July 13-14, 2022</UpdateDate>
+  <Message>&#xA;- Add ability to download userinfo.json from GitHub when downloading latest version of the workbook.&#xA;- Add new SGs: SPAS15, MK3A1, UTS15</Message>
 </SheetData>
