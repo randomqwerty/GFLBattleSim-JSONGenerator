@@ -35,6 +35,8 @@ iOS EN:
 3. Connect to proxy and play as guest. Sim should work normally from there.
 4. Need to redo the above even if you trigger a Code3.
 
+Modified sim download link: https://drive.google.com/file/d/1RkKi0jXYPn8r4qAmo8aDBPc7BvcptVcz/view?usp=sharing
+
 # Do I Need to Use Excel?
 This spreadsheet was created with Excel 2016 and I highly recommended using Excel to avoid any unforeseen bugs or issues. While I cannot guarantee that the spreadsheet is fully compatible with older versions, I have done my best to avoid using formulas or VBA that may not be available on older versions.
 
