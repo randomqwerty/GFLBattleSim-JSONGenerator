@@ -1857,6 +1857,16 @@
         "item_id": "1100008",
         "number": "1",
         "last_recover_time": "0"
+    },
+	{
+        "item_id": "1100009",
+        "number": "1",
+        "last_recover_time": "0"
+    }
+	{
+        "item_id": "1100010",
+        "number": "1",
+        "last_recover_time": "0"
     }
   ],
   "kalina_with_user_info": {
