@@ -248,7 +248,7 @@
 		Dim wks As Worksheet: Set wks = wkb.Sheets(sheetName)
 
 		Dim lcolumn As Long: lcolumn = 7
-		Dim lrow As Long: lrow = 7
+		Dim lrow As Long: lrow = 8
 		
 		Dim titles() As String
 		ReDim titles(lcolumn)
