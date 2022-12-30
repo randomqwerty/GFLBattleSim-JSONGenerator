@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>December 3-10, 2022</UpdateDate>
-  <Message>&#xA;- Add dolls: SCAR-H, SCAR-L, Erma, ColtWalker.&#xA;- Add SPEQs: PKP, SCAR-H, SCAR-L.&#xA;- Add SF: Nyto_tareus.&#xA;- Add SF HOC: Nyto_tareus&#xA;- Updated userinfo.json for SCAR unity skills, please download this latest version for them to work.</Message>
+  <UpdateDate>December 29, 2022</UpdateDate>
+  <Message>&#xA;- Add SPEQ: ADS.&#xA;- Fix new equipment names: FocusChip instead of NewChip, Bipod3/4/5 instead of Tripod3/4/5.</Message>
 </SheetData>
