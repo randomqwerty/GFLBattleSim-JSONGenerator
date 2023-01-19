@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>December 29, 2022</UpdateDate>
-  <Message>&#xA;- Add SPEQ: ADS.&#xA;- Fix new equipment names: FocusChip instead of NewChip, Bipod3/4/5 instead of Tripod3/4/5.&#xA;- Adjust workbook update macro to clear data validation upon transferring presets.</Message>
+  <UpdateDate>January 18, 2023</UpdateDate>
+  <Message>&#xA;- Fix bug with sangvis_team_with_user_info not being created.</Message>
 </SheetData>
