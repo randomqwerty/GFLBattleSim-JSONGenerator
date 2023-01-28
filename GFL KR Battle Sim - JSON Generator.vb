@@ -352,6 +352,11 @@
 
 ' SaveLoadClearInputs Module
 	Sub ClearInput()
+	
+		' Ask user to confirm before deletion
+		prompt = MsgBox("This will clear all inputs in the G&k, SF, and Support Setup sections and cannot be undone. Continue?", vbYesNo)
+		If prompt = vbNo Then Exit Sub
+		
 		With ThisWorkbook.Sheets("Main")
 			.Range("EchelonInput").ClearContents
 			.Range("CustomStatInput").ClearContents
