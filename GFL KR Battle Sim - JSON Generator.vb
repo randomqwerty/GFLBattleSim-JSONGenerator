@@ -371,6 +371,7 @@
 			.Range("SFHOCSelection").ClearContents
 			.Range("StrategyInput").ClearContents
 			.Range("DebuffSelection").ClearContents
+			.Range("BuildingSelection").ClearContents
 		End With
 	End Sub
 	Sub SaveTeam()
