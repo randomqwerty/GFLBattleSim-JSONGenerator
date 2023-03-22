@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>March 16, 2023</UpdateDate>
-  <Message>&#xA;- Add new dolls: APC9K, M110, MSBS, P10C</Message>
+  <UpdateDate>March 16-22, 2023</UpdateDate>
+  <Message>&#xA;- Add new dolls: APC9K, M110, MSBS, P10C&#xA;- Fix issue with data validation for spot IDs.</Message>
 </SheetData>
