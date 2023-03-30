@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>March 16-22, 2023</UpdateDate>
-  <Message>&#xA;- Add new dolls: APC9K, M110, MSBS, P10C&#xA;- Fix issue with data validation for spot IDs.</Message>
+  <UpdateDate>March 30, 2023</UpdateDate>
+  <Message>&#xA;- Add new mods: DP12Mod, 100ShikiMod, K5Mod, M1919A4Mod&#xA;- Add new SPEQs: DP12Mod, 100ShikiMod, K5Mod, M1919A4Mod, SL8.</Message>
 </SheetData>
