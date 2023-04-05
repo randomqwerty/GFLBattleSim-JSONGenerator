@@ -20,7 +20,7 @@ VBA code is provided in a separate .vb file so it can be examined. Place the spr
 
 # IMPORTANT: Client v3.01 and EN Compatibility
 
-The [original battle sim](https://gall.dcinside.com/mgallery/board/view?id=micateam&no=1506585) by kchang will mostly work on client v3.01 if using the userinfo.json from this repo, but an error will make TargetTrain mode inaccessible. kchang has kindly provided me with a copy of the source code and I have modified it so that TargetTrain mode works and so that the sim works with the EN client; however, there are some OS-specific bugs for EN that I have not fully figured out yet, so please ues the following workarounds in the meantime:
+The [original battle sim](https://gall.dcinside.com/mgallery/board/view?id=micateam&no=1506585) by kchang will mostly work on client v3.01 if using the userinfo.json from this repo, but an error will make TargetTrain mode inaccessible. kchang has kindly provided me with a copy of the source code and I have modified it so that TargetTrain mode works and so that the sim works with the EN client; however, there are some OS-specific bugs for EN that I have not fully figured out yet, so please use the following workarounds in the meantime:
 
 Android EN (tested with blue MuMu):
 1. Start GFL while connected to the sim's proxy
