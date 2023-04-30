@@ -18,9 +18,9 @@ Among other things, this spreadsheet can be used to more easily:
 
 VBA code is provided in a separate .vb file so it can be examined. Place the spreadsheet in the parent directory of the battle sim (i.e., the same folder as GFBattleSimulator.exe).
 
-# IMPORTANT: Client v3.01 and EN Compatibility
+# IMPORTANT: Client v3.01+ and EN Compatibility
 
-The [original battle sim](https://gall.dcinside.com/mgallery/board/view?id=micateam&no=1506585) by kchang will mostly work on client v3.01 if using the userinfo.json from this repo, but an error will make TargetTrain mode inaccessible. kchang has kindly provided me with a copy of the source code and I have modified it so that TargetTrain mode works and so that the sim works with the EN client; however, there are some OS-specific bugs for EN that I have not fully figured out yet, so please use the following workarounds in the meantime:
+The [original battle sim](https://gall.dcinside.com/mgallery/board/view?id=micateam&no=1506585) made by kchang had issues with v3.01 and will no longer work as of v3.02, due to new responses that the server expects. kchang has kindly provided me with a copy of the source code and I have modified it to fake the responses needed and so that the sim works with the EN client; however, there are some OS-specific bugs for EN that I have not fully figured out yet, so please use the following workarounds in the meantime:
 
 Android EN (tested with blue MuMu):
 1. Start GFL while connected to the sim's proxy
