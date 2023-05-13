@@ -50,6 +50,7 @@ Google Sheets does not support VBA and cannot be used, but I have tested [LibreO
 * You cannot sim more than 8 G&K HOCs at a time. This appears to be an issue with the sim itself.
 * There are issues with simming G&K directly after simming SF echelons. If you want to switch back to G&K, you should generate the new JSONs (or use the ones from the original sim download) and restart the sim .exe.
 * To properly sim Desert Fairy, you should activate both components in the strategy skill section in this order: "Desert 1 (negation)" and "Desert 2 (debuff)". The  latter applies the debuff to you and the enemy, the former negates the effect on your echelon.
+* The Fatigue debuff should be set to skill level 10, and the GospelAxis debuff should have its skill level field left blank.
 
 # To Do:
 * Possible code/formatting clean up
