@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>May 13, 2023</UpdateDate>
+  <UpdateDate>May 13-18, 2023</UpdateDate>
   <Message>&#xA;- Add ability to set enemy HP%&#xA;- Add ability to apply mapwide (de)buffs like the ones in Theater or Longitudinal Strain ranking.&#xA;- Add new strategy effects: Fatigue/Exhausted (set skill level to 10) and GospelAxis (leave skill level blank) debuffs from Slow Shock.</Message>
 </SheetData>
