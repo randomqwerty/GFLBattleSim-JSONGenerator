@@ -707,7 +707,7 @@
 
 	Sub UpdateWorkbook()
 		If MsgBox("This workbook will be deleted and replaced with the latest version from GitHub. Continue?", vbYesNo) = vbNo Then Exit Sub
-		transferPresets = MsgBox("Would you like to transfer echelon presets to the new workbook?", vbYesNo)
+		transferPresets = MsgBox("Would you like to transfer echelon presets and inputs to the new workbook?", vbYesNo)
 		downloadUserinfo = MsgBox("Would you like to download the latest userinfo.json?", vbYesNo)
 		
 		' Store this workbook's name in a variable so it can be used later
@@ -726,14 +726,14 @@
 			newFileURL = "https://raw.githubusercontent.com/randomqwerty/GFLBattleSim-JSONGenerator/main/userinfo.json"
 			URLDownloadToFile 0, newFileURL, ThisWorkbook.Path & "\Preset\userinfo.json", 0, 0
 		End If
-	
+		
 		' Open new workbook and delete this workbook
 		Set newBook = Workbooks.Open(oldName)
 		ThisWorkbook.Saved = True
 		ThisWorkbook.ChangeFileAccess xlReadOnly
 		Kill ThisWorkbook.FullName
 		
-		' Transfer echelon presets
+		' Transfer echelon presets and inputs
 		If transferPresets = vbYes Then
 			Application.Calculation = xlCalculationManual
 			' G&K
@@ -749,7 +749,20 @@
 			newBook.Sheets("Preset Teams SF").Cells.Validation.Delete
 			Application.CutCopyMode = False
 			Application.Calculation = xlCalculationAutomatic
-		End If
+			
+			' Other inputs
+			newBook.Sheets("Main").Range("EchelonInput").Value = ThisWorkbook.Sheets("Main").Range("EchelonInput").Value
+			newBook.Sheets("Main").Range("CustomStatInput").Value = ThisWorkbook.Sheets("Main").Range("CustomStatInput").Value
+			newBook.Sheets("Main").Range("FairyInput").Value = ThisWorkbook.Sheets("Main").Range("FairyInput").Value
+			newBook.Sheets("Main").Range("PositionInput").Value = ThisWorkbook.Sheets("Main").Range("PositionInput").Value
+			newBook.Sheets("Main").Range("SFEchelonInput").Value = ThisWorkbook.Sheets("Main").Range("SFEchelonInput").Value
+			newBook.Sheets("Main").Range("SFCustomStatInput").Value = ThisWorkbook.Sheets("Main").Range("SFCustomStatInput").Value
+			newBook.Sheets("Main").Range("SFPositionInput").Value = ThisWorkbook.Sheets("Main").Range("SFPositionInput").Value
+			newBook.Sheets("Main").Range("HOCSelection").Value = ThisWorkbook.Sheets("Main").Range("HOCSelection").Value
+			newBook.Sheets("Main").Range("SFHOCSelection").Value = ThisWorkbook.Sheets("Main").Range("SFHOCSelection").Value
+			newBook.Sheets("Main").Range("StrategyInput").Value = ThisWorkbook.Sheets("Main").Range("StrategyInput").Value
+			newBook.Sheets("Main").Range("DebuffSelection").Value = ThisWorkbook.Sheets("Main").Range("DebuffSelection").Value
+			newBook.Sheets("Main").Range("BuildingSelection").Value = ThisWorkbook.Sheets("Main").Range("BuildingSelection").Value
 		
 		' Load XML file from GitHub
 		Set XDoc = CreateObject("MSXML2.DOMDocument")
