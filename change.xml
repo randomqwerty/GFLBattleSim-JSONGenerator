@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>May 25-31, 2023</UpdateDate>
-  <Message>&#xA;- Add new SPEQs: BrenTen, M1A1, Tokarev, M1187.&#xA;- Add new SF: Sana.&#xA;- Add artillery from Slow Shock ranking ("SS Artil") to HOC section. Stats do not matter, deals 1500 damage and 1200 pierce every 5s.&#xA;- Workbook Updater will now also transfer any other inputs (dolls/equipment/fairies/HOCs/etc) in addition to transferring presets.</Message>
+  <UpdateDate>June 8, 2023</UpdateDate>
+  <Message>&#xA;- Add new dolls: QBU191, Boys, HK433</Message>
 </SheetData>
