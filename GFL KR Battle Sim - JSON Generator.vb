@@ -750,16 +750,34 @@
 			Application.CutCopyMode = False
 			Application.Calculation = xlCalculationAutomatic
 			
-			' Other inputs
+			' General inputs
+			newBook.Sheets("Main").Range("EchType").Value = ThisWorkbook.Sheets("Main").Range("EchType").Value
+			newBook.Sheets("Main").Range("DayNight").Value = ThisWorkbook.Sheets("Main").Range("DayNight").Value
+			newBook.Sheets("Main").Range("NodeColor").Value = ThisWorkbook.Sheets("Main").Range("NodeColor").Value
+			newBook.Sheets("Main").Range("TurnNum").Value = ThisWorkbook.Sheets("Main").Range("TurnNum").Value
+			newBook.Sheets("Main").Range("SeedNum").Value = ThisWorkbook.Sheets("Main").Range("SeedNum").Value
+			newBook.Sheets("Main").Range("EnemyID").Value = ThisWorkbook.Sheets("Main").Range("EnemyID").Value
+			newBook.Sheets("Main").Range("BossHP").Value = ThisWorkbook.Sheets("Main").Range("BossHP").Value
+			newBook.Sheets("Main").Range("EnemyHPPercent").Value = ThisWorkbook.Sheets("Main").Range("EnemyHPPercent").Value
+			newBook.Sheets("Main").Range("FairySkill").Value = ThisWorkbook.Sheets("Main").Range("FairySkill").Value
+			newBook.Sheets("Main").Range("HOCSupport").Value = ThisWorkbook.Sheets("Main").Range("HOCSupport").Value
+			
+			' Echelon inputs
 			newBook.Sheets("Main").Range("EchelonInput").Value = ThisWorkbook.Sheets("Main").Range("EchelonInput").Value
+			newBook.Sheets("Main").Range("UseCustomStats").Value = ThisWorkbook.Sheets("Main").Range("UseCustomStats").Value
 			newBook.Sheets("Main").Range("CustomStatInput").Value = ThisWorkbook.Sheets("Main").Range("CustomStatInput").Value
 			newBook.Sheets("Main").Range("FairyInput").Value = ThisWorkbook.Sheets("Main").Range("FairyInput").Value
 			newBook.Sheets("Main").Range("PositionInput").Value = ThisWorkbook.Sheets("Main").Range("PositionInput").Value
 			newBook.Sheets("Main").Range("SFEchelonInput").Value = ThisWorkbook.Sheets("Main").Range("SFEchelonInput").Value
+			newBook.Sheets("Main").Range("UseSFCustomHP").Value = ThisWorkbook.Sheets("Main").Range("UseSFCustomHP").Value
 			newBook.Sheets("Main").Range("SFCustomStatInput").Value = ThisWorkbook.Sheets("Main").Range("SFCustomStatInput").Value
 			newBook.Sheets("Main").Range("SFPositionInput").Value = ThisWorkbook.Sheets("Main").Range("SFPositionInput").Value
+			
+			' Support inputs
 			newBook.Sheets("Main").Range("HOCSelection").Value = ThisWorkbook.Sheets("Main").Range("HOCSelection").Value
+			newBook.Sheets("Main").Range("HOCInput").Value = ThisWorkbook.Sheets("Main").Range("HOCInput").Value
 			newBook.Sheets("Main").Range("SFHOCSelection").Value = ThisWorkbook.Sheets("Main").Range("SFHOCSelection").Value
+			newBook.Sheets("Main").Range("SFHOCInput").Value = ThisWorkbook.Sheets("Main").Range("SFHOCInput").Value
 			newBook.Sheets("Main").Range("StrategyInput").Value = ThisWorkbook.Sheets("Main").Range("StrategyInput").Value
 			newBook.Sheets("Main").Range("DebuffSelection").Value = ThisWorkbook.Sheets("Main").Range("DebuffSelection").Value
 			newBook.Sheets("Main").Range("BuildingSelection").Value = ThisWorkbook.Sheets("Main").Range("BuildingSelection").Value
