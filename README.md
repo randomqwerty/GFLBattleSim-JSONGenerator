@@ -37,6 +37,9 @@ iOS EN:
 
 Modified sim download link: https://drive.google.com/file/d/1VOceIplePJDXXPI6NZja62NK5Yor2Kv2/view?usp=sharing
 
+This sim has been modified to let it read custom responses from a new `preset\responses\` folder, similar to GFAlarm's integration of the battle sim that is buggy with EN. This should hopefully allow users to fix any new errors that appear when a client update occurs. Some examples of this are described in this [screenshot](https://cdn.discordapp.com/attachments/1019290954588504064/1127318485958135828/image.png).
+
+
 # Do I Need to Use Excel?
 This spreadsheet was created with Excel 2016 and I highly recommended using Excel to avoid any unforeseen bugs or issues. While I cannot guarantee that the spreadsheet is fully compatible with older versions, I have done my best to avoid using formulas or VBA that may not be available on older versions.
 
@@ -62,5 +65,6 @@ Google Sheets does not support VBA and cannot be used, but I have tested [LibreO
 * Data Source: https://github.com/randomqwerty/GFLData
 
 # Contact Info:
-* Discord: Randomqwerty#4678
+* Email: randomabc123456@gmail.com
+* Discord: randomqwerty
 * Reddit: /u/UnironicWeeaboo
