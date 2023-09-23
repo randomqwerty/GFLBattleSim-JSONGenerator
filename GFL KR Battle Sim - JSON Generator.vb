@@ -362,6 +362,7 @@
 			.Range("CustomStatInput").ClearContents
 			.Range("FairyInput").ClearContents
 			.Range("PositionInput").ClearContents
+			.Range("ExtraDollInput").ClearContents
 			
 			.Range("SFEchelonInput").ClearContents
 			.Range("SFCustomStatInput").ClearContents
@@ -772,6 +773,7 @@
 			newBook.Sheets("Main").Range("UseSFCustomHP").Value = ThisWorkbook.Sheets("Main").Range("UseSFCustomHP").Value
 			newBook.Sheets("Main").Range("SFCustomStatInput").Value = ThisWorkbook.Sheets("Main").Range("SFCustomStatInput").Value
 			newBook.Sheets("Main").Range("SFPositionInput").Value = ThisWorkbook.Sheets("Main").Range("SFPositionInput").Value
+			newBook.Sheets("Main").Range("ExtraDollInput").Value = ThisWorkbook.Sheets("Main").Range("ExtraDollInput").Value
 			
 			' Support inputs
 			newBook.Sheets("Main").Range("HOCSelection").Value = ThisWorkbook.Sheets("Main").Range("HOCSelection").Value
