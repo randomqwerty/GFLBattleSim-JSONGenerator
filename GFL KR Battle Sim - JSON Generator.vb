@@ -9,6 +9,8 @@
 		Call CreateJSON_A("Fairy", Range("FairyJSONPath").Value)
 		Call CreateJSON_A("Equip", Range("EquipJSONPath").Value)
 		Call CreateJSON_A("HOC", Range("HOCJSONPath").Value)
+		Call CreateJSON_A("Vehicle", Range("VehicleJSONPath").Value)
+		Call CreateJSON_A("VehicleComp", Range("VehicleCompJSONPath").Value)
 		
 		Call CreateJSON_B("Doll", Range("DollJSONPath").Value)
 		Call CreateJSON_B("SF", Range("SFJSONPath").Value)
@@ -16,6 +18,7 @@
 		
 		Call CreateJSON_C("Mission_Act_Info", Range("MissionJSON").Value, 2)
 		Call CreateJSON_C("GFBattleSimulator", Range("SimJSON").Value, 4)
+		Call CreateJSON_C("VehicleRangeAtk", Range("VehicleRangeAtkJSON").Value, 8)
 		Call CreateJSON_C("Spot_Act_Info_Day", Range("SpotDayJSON").Value, 8)
 		Call CreateJSON_C("Spot_Act_Info_Night", Range("SpotNightJSON").Value, 8)
 		
@@ -31,8 +34,8 @@
 	'     [
 	'        "1": {
 
-		Dim FSO As Object
-		Set FSO = CreateObject("Scripting.FileSystemObject")
+		Dim fso As Object
+		Set fso = CreateObject("Scripting.FileSystemObject")
 
 		Dim fileStream As Object
 		Set fileStream = CreateObject("ADODB.Stream")
@@ -104,8 +107,8 @@
 	'        {
 	'           "id":
 
-		Dim FSO As Object
-		Set FSO = CreateObject("Scripting.FileSystemObject")
+		Dim fso As Object
+		Set fso = CreateObject("Scripting.FileSystemObject")
 
 		Dim fileStream As Object
 		Set fileStream = CreateObject("ADODB.Stream")
@@ -180,7 +183,7 @@
 		' Declare variables
 		Const ForReading = 1    '
 		Dim fileToWrite As String: fileToWrite = fileToRead                 ' the path of a new file (set to be the same as the read file)
-		Dim FSO As Object
+		Dim fso As Object
 		Dim readFile As Object      'the file you will READ
 		Dim writeFile As Object     'the file you will CREATE (set to be the same as the read file)
 		Dim repLine As Variant      'the array of lines you will WRITE
@@ -189,12 +192,12 @@
 		Dim wks As Worksheet
 		
 		' Read entire file into an array & close it
-		Set FSO = CreateObject("Scripting.FileSystemObject")
-		Set readFile = FSO.OpenTextFile(fileToRead, ForReading, False)
+		Set fso = CreateObject("Scripting.FileSystemObject")
+		Set readFile = fso.OpenTextFile(fileToRead, ForReading, False)
 		repLine = Split(readFile.ReadAll, vbNewLine)
 		readFile.Close
 		
-		Set writeFile = FSO.CreateTextFile(fileToRead, True, False)
+		Set writeFile = fso.CreateTextFile(fileToRead, True, False)
 		
 		Dim dq As String: dq = """"
 		Dim escapedDq As String: escapedDq = "\"""
@@ -229,14 +232,14 @@
 		' Clean up
 		Set readFile = Nothing
 		Set writeFile = Nothing
-		Set FSO = Nothing
+		Set fso = Nothing
 	End Sub
 
 	Public Sub CreateSFTeamJSON(sheetName As String, fullFilePath As String)
 	' Formatted completely different the rest...
 
-		Dim FSO As Object
-		Set FSO = CreateObject("Scripting.FileSystemObject")
+		Dim fso As Object
+		Set fso = CreateObject("Scripting.FileSystemObject")
 
 		Dim fileStream As Object
 		Set fileStream = CreateObject("ADODB.Stream")
@@ -334,8 +337,8 @@
 	End Sub
 
 	Sub ChipJSON()
-		Dim FSO As Object
-		Set FSO = CreateObject("Scripting.FileSystemObject")
+		Dim fso As Object
+		Set fso = CreateObject("Scripting.FileSystemObject")
 		Dim fullFilePath As String: fullFilePath = Range("ChipJSONPath").Value
 
 		Dim fileStream As Object
@@ -350,6 +353,7 @@
 		fileStream.SaveToFile fullFilePath, 2 'Save binary data To disk
 	End Sub
 
+
 ' SaveLoadClearInputs Module
 	Sub ClearInput()
 	
@@ -363,6 +367,8 @@
 			.Range("FairyInput").ClearContents
 			.Range("PositionInput").ClearContents
 			.Range("ExtraDollInput").ClearContents
+			.Range("VehicleInput").ClearContents
+			.Range("VehicleComponentInput").ClearContents
 			
 			.Range("SFEchelonInput").ClearContents
 			.Range("SFCustomStatInput").ClearContents
