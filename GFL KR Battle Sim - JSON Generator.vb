@@ -368,7 +368,8 @@
 			.Range("PositionInput").ClearContents
 			.Range("ExtraDollInput").ClearContents
 			.Range("VehicleInput").ClearContents
-			.Range("VehicleComponentInput").ClearContents
+			.Range("VehicleCompInput").ClearContents
+			.Range("VehicleCompInput2").ClearContents
 			
 			.Range("SFEchelonInput").ClearContents
 			.Range("SFCustomStatInput").ClearContents
@@ -798,6 +799,9 @@
 			newBook.Sheets("Main").Range("SFCustomStatInput").Value = ThisWorkbook.Sheets("Main").Range("SFCustomStatInput").Value
 			newBook.Sheets("Main").Range("SFPositionInput").Value = ThisWorkbook.Sheets("Main").Range("SFPositionInput").Value
 			newBook.Sheets("Main").Range("ExtraDollInput").Value = ThisWorkbook.Sheets("Main").Range("ExtraDollInput").Value
+			newBook.Sheets("Main").Range("VehicleInput").Value = ThisWorkbook.Sheets("Main").Range("VehicleInput").Value
+			newBook.Sheets("Main").Range("VehicleCompInput").Value = ThisWorkbook.Sheets("Main").Range("VehicleCompInput").Value
+			newBook.Sheets("Main").Range("VehicleCompInput2").Value = ThisWorkbook.Sheets("Main").Range("VehicleCompInput2").Value
 			
 			' Support inputs
 			newBook.Sheets("Main").Range("HOCSelection").Value = ThisWorkbook.Sheets("Main").Range("HOCSelection").Value

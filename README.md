@@ -12,7 +12,7 @@ Among other things, this spreadsheet can be used to more easily:
 * Edit SF echelon composition (units, skill levels, chips, positions, etc.)
 * Edit fairy information (fairy, rarity, level, skill level, etc.)
 * Edit HOC and SF HOC information (stats, skill level, etc.)
-* Edit Mobile Armor information (tech tree, crew, components, combat modes, etc.). Note that component substats are currently not implemented due to the complexity.
+* Edit Mobile Armor information (tech tree, crew, components, combat modes, etc.)
 * Apply strategy fairy skills (Parachute, Construction, Suee, Combo, etc.)
 * Apply enemy debuffs (currently only EMP, Auspicious)
 * Load/save/delete preset echelon
