@@ -44,7 +44,7 @@ This sim has been modified to let it read custom responses from a new `preset\re
 # Do I Need to Use Excel?
 This spreadsheet was created with Excel 2016 and I highly recommended using Excel to avoid any unforeseen bugs or issues. While I cannot guarantee that the spreadsheet is fully compatible with older versions, I have done my best to avoid using formulas or VBA that may not be available on older versions.
 
-Google Sheets does not support VBA and cannot be used, but I have tested [LibreOffice v7.3.2](https://www.libreoffice.org/) (the latest version at the time of this commit) and have adjusted the spreadsheet so that its core functionality (e.g., using the dropdowns to generate JSONs) is intact. Known issues with LibreOffice that I will likely not fix because they are VBA-related:
+Google Sheets does not support VBA and cannot be used, but I have tested [LibreOffice v7.6.2](https://www.libreoffice.org/) (the latest version at the time of this commit) and have adjusted the spreadsheet so that its core functionality (e.g., using the dropdowns to generate JSONs) is intact. Known issues with LibreOffice that I will likely not fix because they are VBA-related:
 * Loading echelon presets will work, but saving presets throws an error and deleting presets breaks the ability to load.
 * The "Download Latest Version from GitHub" button does not work.
 
