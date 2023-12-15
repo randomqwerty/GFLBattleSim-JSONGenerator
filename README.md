@@ -21,6 +21,8 @@ VBA code is provided in a separate .vb file so it can be examined. Place the spr
 
 # IMPORTANT: Client v3.01+ and EN Compatibility
 
+Note: As of December 14, 2023, you will need to use the files in the "Pre-3.03" folder if you want to want to use this for clients older than v3.03. The same .exe can be used for pre/post-v3.03.
+
 The [original battle sim](https://gall.dcinside.com/mgallery/board/view?id=micateam&no=1506585) made by kchang had issues with v3.01 and will no longer work as of v3.02, due to new responses that the server expects. kchang has kindly provided me with a copy of the source code and I have modified it to fake the responses needed and so that the sim works with the EN client; however, there are some OS-specific bugs for EN that I have not fully figured out yet, so please use the following workarounds in the meantime:
 
 Android EN (tested with blue MuMu):

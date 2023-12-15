@@ -9,6 +9,7 @@
 		Call CreateJSON_A("Fairy", Range("FairyJSONPath").Value)
 		Call CreateJSON_A("Equip", Range("EquipJSONPath").Value)
 		Call CreateJSON_A("HOC", Range("HOCJSONPath").Value)
+		Call CreateJSON_A("HOCChip", Range("ChipJSONPath").Value)
 		Call CreateJSON_A("Vehicle", Range("VehicleJSONPath").Value)
 		Call CreateJSON_A("VehicleComp", Range("VehicleCompJSONPath").Value)
 		
@@ -24,7 +25,7 @@
 		
 		Call CreateSFTeamJSON("SF Team", Range("SFTeamJSONPath").Value) ' ugly mess
 		
-		Call ChipJSON ' blank file
+		'Call ChipJSON ' blank file
 		MsgBox "Process completed."
 	End Sub
 
