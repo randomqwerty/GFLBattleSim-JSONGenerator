@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>December 14, 2023</UpdateDate>
-  <Message>&#xA;- NOTE: This sheet and userinfo.json will only work for client v3.03+ as of December 14, 2023. For v3.02 (EN/JP), use the sheet and userinfo.json in the "Pre-3.03" folder instead.&#xA;- Add new SPEQs: K11, NTW20ModGZ, Type97SModGZ.&#xA;- Add new dolls: FM24, MG15, Stevens520, Stevens620.&#xA;- Fix bug with HOC stats on v3.03. This requires you to download the latest battle sim .exe.</Message>
+  <UpdateDate>January 12, 2023</UpdateDate>
+  <Message>&#xA;- NOTE: This sheet and userinfo.json will only work for client v3.03+ as of December 14, 2023. For v3.02 (EN/JP), use the sheet and userinfo.json in the "Pre-3.03" folder instead.&#xA;- Add new SPEQs: K31, G3ModGZ, M1911ModGZ.</Message>
 </SheetData>
