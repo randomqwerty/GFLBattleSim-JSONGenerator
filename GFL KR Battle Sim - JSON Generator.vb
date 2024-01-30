@@ -381,6 +381,7 @@
 			.Range("StrategyInput").ClearContents
 			.Range("DebuffSelection").ClearContents
 			.Range("BuildingSelection").ClearContents
+			.Range("AllySelection").ClearContents
 		End With
 	End Sub
 	Sub SaveTeam()
@@ -812,6 +813,7 @@
 			newBook.Sheets("Main").Range("StrategyInput").Value = ThisWorkbook.Sheets("Main").Range("StrategyInput").Value
 			newBook.Sheets("Main").Range("DebuffSelection").Value = ThisWorkbook.Sheets("Main").Range("DebuffSelection").Value
 			newBook.Sheets("Main").Range("BuildingSelection").Value = ThisWorkbook.Sheets("Main").Range("BuildingSelection").Value
+			newBook.Sheets("Main").Range("AllySelection").Value = ThisWorkbook.Sheets("Main").Range("AllySelection").Value
 		
 		' Load XML file from GitHub
 		Set XDoc = CreateObject("MSXML2.DOMDocument")

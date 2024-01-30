@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>January 12, 2023</UpdateDate>
-  <Message>&#xA;- NOTE: This sheet and userinfo.json will only work for client v3.03+ as of December 14, 2023. For v3.02 (EN/JP), use the sheet and userinfo.json in the "Pre-3.03" folder instead.&#xA;- Add new SPEQs: K31, G3ModGZ, M1911ModGZ.</Message>
+  <UpdateDate>January 30, 2023</UpdateDate>
+  <Message>&#xA;- NOTE: This sheet and userinfo.json will only work for client v3.03+ as of December 14, 2023. For v3.02 (EN/JP), use the sheet and userinfo.json in the "Pre-3.03" folder of the repo instead.&#xA;- Add ability to sim "allies"/NPCs (e.g., SC+ Gustav support).</Message>
 </SheetData>
