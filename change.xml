@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>February 27, 2023</UpdateDate>
-  <Message>&#xA;- NOTE: This sheet and userinfo.json will only work for client v3.03+ as of December 14, 2023. For v3.02 (EN/JP), use the sheet and userinfo.json in the "Pre-3.03" folder of the repo instead.&#xA;- Add new SPEQs: LWMMGModGZ, M950AModGZ.&#xA;- Add new doll: P2000</Message>
+  <UpdateDate>March 1, 2023</UpdateDate>
+  <Message>&#xA;- NOTE: This sheet and userinfo.json will only work for client v3.03+ as of December 14, 2023. For v3.02 (EN/JP), use the sheet and userinfo.json in the "Pre-3.03" folder of the repo instead.&#xA;- Add new dolls: GitS collab (Motoko, Ezaki, Mizukane).&#xA;- Add new SPEQs: MG5 and GitS collab (Motoko, Ezaki, Mizukane)</Message>
 </SheetData>
