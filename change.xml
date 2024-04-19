@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>April 17, 2023</UpdateDate>
-  <Message>&#xA;- NOTE: This sheet and userinfo.json will only work for client v3.03+ as of December 14, 2023. For v3.02 (EN/JP), use the sheet and userinfo.json in the "Pre-3.03" folder of the repo instead.&#xA;- Add new SPEQ: BrenModGZ, AA12GZ&#xA;- Add missing vehicle components: Grille, Camouflage, Mortar, Shotgun, Laser Rangefinder.&#xA;- Add quick fix for vehicle component dropdowns..</Message>
+  <UpdateDate>April 17-19, 2023</UpdateDate>
+  <Message>&#xA;- NOTE: This sheet and userinfo.json will only work for client v3.03+ as of December 14, 2023. For v3.02 (EN/JP), use the sheet and userinfo.json in the "Pre-3.03" folder of the repo instead.&#xA;- Add new doll: Type79Mod&#xA;- Add new SPEQ: BrenModGZ, AA12GZ, Type79Mod, PP90&#xA;- Add missing vehicle components: Grille, Camouflage, Mortar, Shotgun, Laser Rangefinder.&#xA;- Add quick fix for vehicle component dropdowns..</Message>
 </SheetData>
