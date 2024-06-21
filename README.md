@@ -40,8 +40,20 @@ iOS EN:
 
 Modified sim download link: https://drive.google.com/file/d/1VOceIplePJDXXPI6NZja62NK5Yor2Kv2/view?usp=sharing
 
-This sim has been modified to let it read custom responses from a new `preset\responses\` folder, similar to GFAlarm's integration of the battle sim that is buggy with EN. This should hopefully allow users to fix any new errors that appear when a client update occurs. Some examples of this are described in this [screenshot](https://cdn.discordapp.com/attachments/1019290954588504064/1127318485958135828/image.png).
+This sim has been modified to let it read custom responses from a new `preset\responses\` folder, similar to GFAlarm's integration of the battle sim that is buggy with EN. This should hopefully allow users to fix any new errors that appear when a client update occurs.
 
+# Theater Testing
+
+For now, this will likely only work while Theater is live and you will not be able to challenge zones Elem/Int/Adv once the server enters Core. It is also not an automated process. I may see if this is possible to change later and I may also need to update the instructions below once we get another Theater and I can test more.
+
+1. Open GFAlarm. Click the gear icon to go into settings, enable "Print Packet Log" (under the Extras section)
+2. Log into GFL and open the Theater menu. You can turn "Print Packet Log" off now.
+3. Go to the `Log` subfolder of your GFAlarm folder, open the latest log, look for the one that says `"URL":"/Theater/startTheaterExercise"`.
+4. Copy the part after `"Response":` that is enclosed in braces {} and make sure that it is a valid JSON (delete the last right brace that is leftover)
+5. Paste that into `preset\theater_data.json` in your Battle Sim folder.
+6. Set the sim to TargetTrain mode, generate your echelon/equipment/fairy/etc., log in, enter Theater, select your map, and play as usual.
+
+Note that you may be able to skip steps 1-5 by updating the file manually, but that needs more testing to make sure it works. If you do not want to clear all waves, you can also go into `preset\responses\startTheaterExercise` and remove waves from the list (it is zero-indexed, so first wave = 0, last wave = 5).
 
 # Do I Need to Use Excel?
 This spreadsheet was created with Excel 2016 and I highly recommended using Excel to avoid any unforeseen bugs or issues. While I cannot guarantee that the spreadsheet is fully compatible with older versions, I have done my best to avoid using formulas or VBA that may not be available on older versions.
