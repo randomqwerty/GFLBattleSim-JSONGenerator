@@ -48,10 +48,11 @@ For now, this will likely only work while Theater is live and you will not be ab
 
 1. Open GFAlarm. Click the gear icon to go into settings, enable "Print Packet Log" (under the Extras section)
 2. Log into GFL and open the Theater menu. You can turn "Print Packet Log" off now.
-3. Go to the `Log` subfolder of your GFAlarm folder, open the latest log, look for the one that says `"URL":"/Theater/startTheaterExercise"`.
+3. Go to the `Log` subfolder of your GFAlarm folder, open the latest log, look for the one that says `"URL":"/Theater/data"`.
 4. Copy the part after `"Response":` that is enclosed in braces {} and make sure that it is a valid JSON (delete the last right brace that is leftover)
 5. Paste that into `preset\theater_data.json` in your Battle Sim folder.
-6. Set the sim to TargetTrain mode, generate your echelon/equipment/fairy/etc., log in, enter Theater, select your map, and play as usual.
+6. C;ear anything inside `theater_teams_info`. It should look like this: `"theater_teams_info":{},`
+7. Set the sim to TargetTrain mode, generate your echelon/equipment/fairy/etc., log in, enter Theater, select your map, and play as usual.
 
 Note that you may be able to skip steps 1-5 by updating the file manually, but that needs more testing to make sure it works. If you do not want to clear all waves, you can also go into `preset\responses\startTheaterExercise` and remove waves from the list (it is zero-indexed, so first wave = 0, last wave = 5).
 
