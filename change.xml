@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>August 13-15, 2024</UpdateDate>
-  <Message>&#xA;- Add new mod: SPAS12Mod &#xA;- Add new SF: GagerSwimwear&#xA;- Add new SPEQs: WA2000GZ, M1895ModGZ, HS2000, SPAS12Mod</Message>
+  <UpdateDate>August 31, 2024</UpdateDate>
+  <Message>&#xA;- Add new SPEQ: KLIN&#xA;- Add new HOC: L9A1&#xA;- Fix bugs: some entries missing from SPEQ dropdowns, update userinfo.json to show new HOC/MA facilities</Message>
 </SheetData>
