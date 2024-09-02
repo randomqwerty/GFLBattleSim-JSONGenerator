@@ -50126,40 +50126,7 @@
             "intensify_item": ""
         }
     ],
-    "operation_act_info": [
-        {
-            "id": "63720635",
-            "operation_id": "29",
-            "user_id": "562858",
-            "team_id": "13",
-            "start_time": "1714674231",
-            "exec_num": "6"
-        },
-        {
-            "id": "63719979",
-            "operation_id": "48",
-            "user_id": "562858",
-            "team_id": "14",
-            "start_time": "1714660932",
-            "exec_num": "6"
-        },
-        {
-            "id": "63720929",
-            "operation_id": "53",
-            "user_id": "562858",
-            "team_id": "11",
-            "start_time": "1714681481",
-            "exec_num": "6"
-        },
-        {
-            "id": "63717440",
-            "operation_id": "54",
-            "user_id": "562858",
-            "team_id": "12",
-            "start_time": "1714606157",
-            "exec_num": "4"
-        }
-    ],
+    "operation_act_info": [],
 	"develop_act_info": [],
     "fix_act_info": [],
     "user_record": {
