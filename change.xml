@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetData>
-  <UpdateDate>August 31, 2024</UpdateDate>
-  <Message>&#xA;- Add new SPEQ: KLIN&#xA;- Add new HOC: L9A1&#xA;- Fix bugs: some entries missing from SPEQ dropdowns, update userinfo.json to show new HOC/MA facilities</Message>
+  <UpdateDate>September 7, 2024</UpdateDate>
+  <Message>&#xA;- Add new SPEQs: G41GZ, M500ModGZ</Message>
 </SheetData>
